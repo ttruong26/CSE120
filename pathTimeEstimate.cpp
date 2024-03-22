@@ -85,7 +85,7 @@ double performAStar(int startX, int startY, int goalX, int goalY, double average
 int main() {
     int minPosX = -29200;
     int minPosY = -19930;
-    int maxPosX = -10940;
+    int maxPosX = -5940;
     int maxPosY = -4280;
     double averageSpeed = 1200; // in mm/sec
 
