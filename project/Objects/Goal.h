@@ -15,21 +15,21 @@ public:
     Goal(Tile *tile, int id);
     Goal(int x, int y, double heading, std::string id);
 
+    Type getType() const override { return Type::Goal; }
     void setPosition(Tile *tile);
     void setPosition(int x, int y);
     Tile *getCurrentPosition();
     bool isWorking() { return _isActive; }
 
-    void print()
+    void print() override
     {
-        std::cout << "Goal ID: " << _goalId << ", Position: (" << currentTile->getPosition()._x << ", " << currentTile->getPosition()._y << "), "
+        std::cout << "Goal ID: " << _goalId << ", Position: (" << _currentTile->getPosition()._x << ", " << _currentTile->getPosition()._y << "), "
                   << "Heading: " << _heading << std::endl;
     }
 
 private:
     std::string _goalId;
     double _heading;
-    Tile *currentTile;
 
     bool _isActive;
     double _size; // For consideration of a Goal taking up multiple tiles.

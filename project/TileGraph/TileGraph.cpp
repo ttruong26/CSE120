@@ -10,26 +10,12 @@ TileGraph::TileGraph()
     _width = 0;
     _height = 0;
     _origin = Point(0, 0);
-    tiles = std::vector<std::vector<Tile>>();
+    tiles = std::vector<std::vector<Tile *>>();
 }
 
 TileGraph::TileGraph(int w, int h, int originX, int originY)
 {
-    // We index from 0 to height + 1, and weight +1. This is because the # of points on a line of length n is n+1
-    // Ex: 0,0 to 0,1 is 2 points but is a line segment of length 1.
-    for (int y = 0; y < h + 1; y++)
-    {
-        tiles.push_back(std::vector<Tile>());
-        for (int x = 0; x < w + 1; x++)
-        {
-            Tile tile(originX + x, originY + y);
-            tiles[y].push_back(tile);
-        }
-    }
-
-    _origin = Point(originX, originY);
-    _width = w;
-    _height = h;
+    this->setBounds(w, h, originX, originY);
 }
 
 void TileGraph::setBounds(int w, int h, int originX, int originY)
@@ -38,10 +24,10 @@ void TileGraph::setBounds(int w, int h, int originX, int originY)
     // Ex: 0,0 to 0,1 is 2 points but is a line segment of length 1.
     for (int y = 0; y < h + 1; y++)
     {
-        tiles.push_back(std::vector<Tile>());
+        tiles.push_back(std::vector<Tile *>());
         for (int x = 0; x < w + 1; x++)
         {
-            Tile tile(originX + x, originY + y);
+            Tile *tile = new Tile(originX + x, originY + y);
             tiles[y].push_back(tile);
         }
     }
@@ -55,13 +41,26 @@ Tile *TileGraph::getTileAt(int x, int y)
 {
     if (x < _origin._x || x >= _width + _origin._x || y < _origin._y || y >= _height + _origin._y)
     {
+        std::cout << "Tile out of bounds" << std::endl;
         return NULL;
     }
 
     int indexX = x - _origin._x;
     int indexY = y - _origin._y;
-    std::cout << "realX: " << indexX << " realY: " << indexY << std::endl;
-    return &tiles[indexX][indexY];
+    return tiles[indexY][indexX];
+}
+
+void TileGraph::placeTiletoArray(int x, int y, Tile *tile)
+{
+    int indexX = x - _origin._x;
+    int indexY = y - _origin._y;
+    tiles[indexY][indexX] = tile;
+}
+
+void TileGraph::placeObject(MapObject *object)
+{
+    // std::cout << object->getCurrentPosition()->getX() << object->getCurrentPosition()->getY() << std::endl;
+    placeTiletoArray(object->getCurrentPosition()->getX(), object->getCurrentPosition()->getY(), object->getCurrentPosition());
 }
 
 int TileGraph::getWidth()
@@ -80,7 +79,7 @@ void TileGraph::printGraph()
     {
         for (int x = 0; x <= _width; x++)
         {
-            tiles[y][x].Print();
+            tiles[y][x]->Print();
         }
         std::cout << std::endl;
     }
@@ -89,10 +88,6 @@ void TileGraph::printGraph()
 void TileGraph::print()
 {
     std::cout << "Width: " << _width << " Height: " << _height << " OriginX: " << _origin._x << " OriginY: " << _origin._y << std::endl;
-}
-
-void TileGraph::placeGoal()
-{
 }
 
 std::array<Tile *, 4> TileGraph::getNeighbors(Tile *tile)

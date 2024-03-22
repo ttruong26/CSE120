@@ -3,11 +3,7 @@
 
 #include <iostream>
 #include "../Utility.h"
-
-// Forward Declaration
-class Robot;
-class Goal;
-class Wall;
+#include "../Objects/MapObject.h"
 
 class Tile
 {
@@ -29,27 +25,25 @@ public:
     void calculateHeuristic(const Point &target);
     void resetPathFindingInfo();
 
+    void setObject(MapObject *object);
+    MapObject *getObject();
+
+    //
+    bool isRobot() const;
+    bool isGoal() const;
+    bool isWall() const;
+    bool isFree() const;
+
     void Print()
     {
         std::cout << "(" << coordinates._x << ", " << coordinates._y << ") ";
     }
 
-    // Setters for different types of object that can be on tile
-    void setRobot(Robot *robot);
-    void setGoal(Goal *goal);
-    void setWall(Wall *wall);
-
-    // Getters for different types of object that can be on tile
-    Robot *getRobot();
-    Goal *getGoal();
-    Wall *getWall();
-
 private:
     Point coordinates;
 
     // Tile can either hold a robot, goal or wall element
-    Robot *mRobot;
-    Goal *mGoal;
+    MapObject *_object;
 };
 
 #endif

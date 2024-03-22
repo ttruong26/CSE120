@@ -5,9 +5,11 @@
 
 using namespace std;
 
-void extractContent(const string& inputFile, const map<string, string>& phraseToFile) {
+void extractContent(const string &inputFile, const map<string, string> &phraseToFile)
+{
     ifstream inFile(inputFile);
-    if (!inFile) {
+    if (!inFile)
+    {
         cerr << "Unable to open input file: " << inputFile << endl;
         return;
     }
@@ -16,24 +18,30 @@ void extractContent(const string& inputFile, const map<string, string>& phraseTo
 
     string line;
 
-    while (getline(inFile, line)) {
+    while (getline(inFile, line))
+    {
         // Check if the line starts with any of the specified phrases
-        for (const auto& pair : phraseToFile) {
-            const string& phrase = pair.first;
-            if (line.compare(0, phrase.length(), phrase) == 0) {
-                const string& filename = pair.second;
+        for (const auto &pair : phraseToFile)
+        {
+            const string &phrase = pair.first;
+            if (line.compare(0, phrase.length(), phrase) == 0)
+            {
+                const string &filename = pair.second;
 
                 // Check if we've encountered this phrase before
-                if (fileMap.find(filename) == fileMap.end()) {
+                if (fileMap.find(filename) == fileMap.end())
+                {
                     // If not, create a new file
                     fileMap[filename].open(filename + ".txt");
                 }
                 // Write the line to the appropriate file (doesn't work)
-                if (phrase == "DATA") {
+                if (phrase == "DATA")
+                {
                     // Write the phrase into the file
                     fileMap[filename] << line << endl;
                     // Append all lines under the phrase into the corresponding file
-                    while (getline(inFile, line)) {
+                    while (getline(inFile, line))
+                    {
                         // Check if we've encountered another section
                         if (line.find("Cairn:") == 0 || line.find("LINES") == 0)
                             break;
@@ -52,7 +60,8 @@ void extractContent(const string& inputFile, const map<string, string>& phraseTo
                 //         fileMap[filename] << line << endl;
                 //     }
                 // }
-                else {
+                else
+                {
                     fileMap[filename] << line << endl;
                 }
                 break; // Move to the next line after writing
@@ -61,7 +70,8 @@ void extractContent(const string& inputFile, const map<string, string>& phraseTo
     }
 
     // Close all output files
-    for (auto& pair : fileMap) {
+    for (auto &pair : fileMap)
+    {
         pair.second.close();
     }
 
@@ -69,7 +79,8 @@ void extractContent(const string& inputFile, const map<string, string>& phraseTo
     std::cout << "Content successfully extracted from .map file to .txt file." << std::endl;
 }
 
-int main() {
+int main()
+{
     std::string mapFile;
     std::cout << "Please enter a .map file to open: ";
     std::cin >> mapFile;
@@ -78,8 +89,7 @@ int main() {
     map<string, string> phraseToFile = {
         {"Cairn: GoalWithHeading", "extracted_GOALS"},
         {"LINES", "extracted_LINES"},
-        {"DATA", "extracted_DATA"}
-    };
+        {"DATA", "extracted_DATA"}};
 
     extractContent(mapFile, phraseToFile);
 

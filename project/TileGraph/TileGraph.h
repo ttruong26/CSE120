@@ -4,6 +4,7 @@
 #include "Tile.h"
 #include <array>
 #include <vector>
+#include "../Objects/MapObject.h"
 
 // EX: a Tile Graph with width 10 and height 10 starting at origin (-10, -10) would look like this:
 //    Due to indexing the TileGraph will be 11x11
@@ -30,10 +31,12 @@ public:
     std::array<Tile *, 4> getNeighbors(Tile *tile);     // Returns the neighbors of given tile N,S,E,W
     std::array<Tile *, 8> getNeighborsDiag(Tile *tile); // Returns all surronding neighbors of given tile N,NE,NW...
 
+    // Both of these functions can take in exact coords (point -1, -1),
+    //  - access to vector starts at 0, so the the bottom left most coordinate is at (0,0)
     Tile *getTileAt(int x, int y);
+    void placeTiletoArray(int x, int y, Tile *tile);
 
-    void placeGoal();
-    Goal *getGoal(); // Return where Goal object is found on tile graph, potential use for robot pathfinding.
+    void placeObject(MapObject *object);
 
     int getWidth();
     int getHeight();
@@ -45,7 +48,7 @@ private:
     int _width, _height;
     Point _origin;
 
-    std::vector<std::vector<Tile>> tiles;
+    std::vector<std::vector<Tile *>> tiles;
 };
 
 #endif // TILEGRAPH_H

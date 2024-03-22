@@ -9,9 +9,11 @@ class Workspace
 public:
     Workspace();
     void loadData();
-    void print();
+    void placeLoadedGoals();
+    void printGoals();
+
 private:
-    TileGraph* graph;
+    TileGraph *graph;
     std::vector<Goal *> goals;
-    std::vector<Wall*> walls;
+    std::vector<Line> lines;
 };

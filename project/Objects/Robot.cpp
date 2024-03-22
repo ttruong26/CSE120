@@ -3,28 +3,23 @@
 Robot::Robot()
 {
     robotId = 0;
-    currentTile = nullptr;
+    _currentTile = nullptr;
 }
 
 Robot::Robot(Tile *tile, int id)
 {
     robotId = id;
-    currentTile = tile;
+    _currentTile = tile;
 }
 
 void Robot::setPosition(Tile *tile)
 {
-    currentTile = tile;
+    _currentTile = tile;
 }
 
 void Robot::setPosition(int x, int y)
 {
-    currentTile->setPosition(x, y);
-}
-
-std::pair<int, int> Robot::getCurrentPosition()
-{
-    return currentTile->getPosition();
+    _currentTile->setPosition(x, y);
 }
 
 void Robot::executeTask(Goal *goal)
