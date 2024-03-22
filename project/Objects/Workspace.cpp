@@ -46,3 +46,8 @@ void Workspace::placeLoadedGoals()
         std::cout << "Goal not placed at (-23540, -6325)" << std::endl;
     }
 }
+
+void Workspace:updateTable()
+{
+    std::cout << "In update table" << std::endl;
+}
