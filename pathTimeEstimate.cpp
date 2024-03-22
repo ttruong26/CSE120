@@ -2,7 +2,6 @@
 #include <vector>
 #include <cmath>
 #include <queue>
-#include <unordered_set>
 #include <utility>
 
 using namespace std;
@@ -27,9 +26,9 @@ double calculateDistance(int x1, int y1, int x2, int y2) {
 }
 
 // Function to check if a point lies within an obstacle area
-bool isInObstacle(int x, int y, const vector<pair<int, int> >& obstacles) {
-    for (size_t i = 0; i < obstacles.size(); ++i) {
-        if (x == obstacles[i].first && y >= obstacles[i].second) {
+bool isInObstacle(int x, int y, const vector<pair<int, int>>& obstacles) {
+    for (const auto& obstacle : obstacles) {
+        if (x == obstacle.first && y >= obstacle.second) {
             return true;
         }
     }
@@ -38,8 +37,7 @@ bool isInObstacle(int x, int y, const vector<pair<int, int> >& obstacles) {
 
 // Function to perform A* search
 double performAStar(int startX, int startY, int goalX, int goalY, double averageSpeed, const vector<pair<int, int> >& obstacles, int gridSizeX, int gridSizeY) {
-    priority_queue<Node, vector<Node>, greater<Node> > openSet;
-    unordered_set<int> closedSet;
+    priority_queue<Node, vector<Node>, greater<Node>> openSet;
     vector<vector<bool> > visited(gridSizeX, vector<bool>(gridSizeY, false));
 
     openSet.push(Node(startX, startY, 0, 0, calculateDistance(startX, startY, goalX, goalY)));
@@ -52,7 +50,11 @@ double performAStar(int startX, int startY, int goalX, int goalY, double average
             return current.g / averageSpeed;
         }
 
-        closedSet.insert(current.x * gridSizeX + current.y);
+        if (visited[current.x][current.y] || isInObstacle(current.x, current.y, obstacles)) {
+            continue;
+        }
+
+        visited[current.x][current.y] = true;
 
         for (int dx = -1; dx <= 1; ++dx) {
             for (int dy = -1; dy <= 1; ++dy) {
@@ -61,18 +63,17 @@ double performAStar(int startX, int startY, int goalX, int goalY, double average
                 int nextX = current.x + dx;
                 int nextY = current.y + dy;
 
-                if (nextX < 0 || nextX >= gridSizeX || nextY < 0 || nextY >= gridSizeY || visited[nextX][nextY] || isInObstacle(nextX, nextY, obstacles)) {
+                if (nextX < 0 || nextX >= gridSizeX || nextY < 0 || nextY >= gridSizeY) {
                     continue;
                 }
 
                 double newCost = current.g + calculateDistance(current.x, current.y, nextX, nextY);
 
-                if (closedSet.find(nextX * gridSizeX + nextY) == closedSet.end() || newCost < current.g) {
+                if (!visited[nextX][nextY] && !isInObstacle(nextX, nextY, obstacles)) {
                     double heuristic = calculateDistance(nextX, nextY, goalX, goalY);
                     double f = newCost + heuristic;
 
                     openSet.push(Node(nextX, nextY, f, newCost, heuristic));
-                    visited[nextX][nextY] = true;
                 }
             }
         }
@@ -152,7 +153,8 @@ int main() {
      obstacles.push_back(make_pair(-25940, -15680));
      obstacles.push_back(make_pair(-25940, -13600));
      // will include more obstacles
-
+        // Add more obstacles here
+    //};
 
     // Calculate grid size
     int gridSizeX = abs(maxPosX - minPosX) / 100 + 1;
@@ -160,7 +162,9 @@ int main() {
 
     cout << "Starting A* search..." << endl;
 
-    double timeRemaining = performAStar((minPosX + abs(minPosX)) / 100, (minPosY + abs(minPosY)) / 100, (maxPosX + abs(minPosX)) / 100, (maxPosY + abs(minPosY)) / 100, averageSpeed, obstacles, gridSizeX, gridSizeY);
+    double timeRemaining = performAStar((minPosX + abs(minPosX)) / 100, (minPosY + abs(minPosY)) / 100, 
+                                        (maxPosX + abs(minPosX)) / 100, (maxPosY + abs(minPosY)) / 100, 
+                                        averageSpeed, obstacles, gridSizeX, gridSizeY);
 
     if (timeRemaining >= 0) {
         cout << "Estimated time remaining: " << timeRemaining << " seconds" << endl;
