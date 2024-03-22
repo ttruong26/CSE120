@@ -11,6 +11,7 @@ public:
     void loadData();
     void placeLoadedGoals();
     void printGoals();
+    void updateTable();
 
 private:
     TileGraph *graph;
