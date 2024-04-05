@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include <string>
-#include "../Utility.h"
 #include "../TileGraph/Tile.h"
 #include <ctime>
 #include "MapObject.h"
@@ -18,7 +17,6 @@ public:
     Type getType() const override { return Type::Goal; }
     void setPosition(Tile *tile);
     void setPosition(int x, int y);
-    Tile *getCurrentPosition();
     bool isWorking() { return _isActive; }
 
     void print() override

@@ -17,6 +17,8 @@ Goal::Goal(int x, int y, double heading, std::string id)
     _goalId = id;
     _heading = heading;
     _currentTile = new Tile();
+
+    // Set the tile with goal information
     _currentTile->setPosition(x, y);
     _currentTile->setObject(this);
 }
@@ -29,9 +31,4 @@ void Goal::setPosition(Tile *tile)
 void Goal::setPosition(int x, int y)
 {
     _currentTile->setPosition(x, y);
-}
-
-Tile *Goal::getCurrentPosition()
-{
-    return _currentTile;
 }

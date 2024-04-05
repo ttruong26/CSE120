@@ -1,3 +1,5 @@
+#include <iostream>
+#include <string>
 #include "TileGraph/TileGraph.h"
 #include "Objects/Goal.h"
 #include "Utility.h"
@@ -16,6 +18,7 @@ int main()
     ws.loadData();
     ws.printGoals();
     ws.placeLoadedGoals();
+    ws.placeLoadedLines();
 
     return 0;
 }

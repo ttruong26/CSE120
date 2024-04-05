@@ -5,6 +5,7 @@
 #include <array>
 #include <vector>
 #include "../Objects/MapObject.h"
+#include "../Objects/Line.h"
 
 // EX: a Tile Graph with width 10 and height 10 starting at origin (-10, -10) would look like this:
 //    Due to indexing the TileGraph will be 11x11
@@ -34,9 +35,9 @@ public:
     // Both of these functions can take in exact coords (point -1, -1),
     //  - access to vector starts at 0, so the the bottom left most coordinate is at (0,0)
     Tile *getTileAt(int x, int y);
-    void placeTiletoArray(int x, int y, Tile *tile);
+    void placeTiletoArray(int x, int y, Tile *tile); // Helper funciton for placeObject()
 
-    void placeObject(MapObject *object);
+    void placeObject(MapObject *object); //
 
     int getWidth();
     int getHeight();

@@ -2,7 +2,7 @@
 
 using namespace std;
 
-void MapLoader::LoadMap(TileGraph &graph, std::vector<Goal *> &goals, std::vector<Line> &lines, std::string fileName)
+void MapLoader::LoadMap(TileGraph &graph, std::vector<Goal *> &goals, std::vector<Line *> &lines, std::string fileName)
 {
     Tile *tile = NULL;
     vector<Point> boundCoordinates;
@@ -38,10 +38,12 @@ void MapLoader::LoadMap(TileGraph &graph, std::vector<Goal *> &goals, std::vecto
             }
 
             std::istringstream iss(line);
-            Line l;
+            Line *l = new Line();
+            int x1, y1, x2, y2;
             // Extract coordinates from the line and store them in the 'Line' struct
-            if (iss >> l.x1 >> l.y1 >> l.x2 >> l.y2)
+            if (iss >> x1 >> y1 >> x2 >> y2)
             {
+                l->setEndPoints(x1, y1, x2, y2);
                 lines.push_back(l);
             }
             else

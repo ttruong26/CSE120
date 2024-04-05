@@ -13,11 +13,17 @@ TileGraph::TileGraph()
     tiles = std::vector<std::vector<Tile *>>();
 }
 
+// Constructor that creates a rectangle on a cartesian plane starting at an origin (x,y). Represents a graph of tiles
+// w: width of the graph
+// h: height of the graph
+// originX: x position of the origin
+// originY: y position of the origin
 TileGraph::TileGraph(int w, int h, int originX, int originY)
 {
     this->setBounds(w, h, originX, originY);
 }
 
+// Helper function to set the bounds of the graph
 void TileGraph::setBounds(int w, int h, int originX, int originY)
 {
     // We index from 0 to height + 1, and weight +1. This is because the # of points on a line of length n is n+1
@@ -50,6 +56,7 @@ Tile *TileGraph::getTileAt(int x, int y)
     return tiles[indexY][indexX];
 }
 
+// Convert (x,y) to array indicies and place the tile in the array
 void TileGraph::placeTiletoArray(int x, int y, Tile *tile)
 {
     int indexX = x - _origin._x;
@@ -59,7 +66,7 @@ void TileGraph::placeTiletoArray(int x, int y, Tile *tile)
 
 void TileGraph::placeObject(MapObject *object)
 {
-    // std::cout << object->getCurrentPosition()->getX() << object->getCurrentPosition()->getY() << std::endl;
+    // Get the xPosition, yPosition, and currTile from a mapObject, and place it in the tile array
     placeTiletoArray(object->getCurrentPosition()->getX(), object->getCurrentPosition()->getY(), object->getCurrentPosition());
 }
 
