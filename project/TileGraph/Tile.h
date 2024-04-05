@@ -17,6 +17,15 @@ public:
     int getX();
     int getY();
 
+        void setObject(MapObject *object);
+    MapObject *getObject();
+
+    // To check what type of mapObject is placed on the tile
+    bool isRobot() const;
+    bool isGoal() const;
+    bool isWall() const;
+    bool isFree() const;
+
     // AStar Properties
     int g = 0;
     int h = 0;
@@ -24,15 +33,6 @@ public:
     Tile *parent = nullptr;
     void calculateHeuristic(const Point &target);
     void resetPathFindingInfo();
-
-    void setObject(MapObject *object);
-    MapObject *getObject();
-
-    //
-    bool isRobot() const;
-    bool isGoal() const;
-    bool isWall() const;
-    bool isFree() const;
 
     void Print()
     {

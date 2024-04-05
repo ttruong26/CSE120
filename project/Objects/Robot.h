@@ -8,14 +8,16 @@ class Robot : public MapObject
 {
 public:
     Robot();
-    Robot(Tile *tile, int id);
+    Robot(int x, int y, int id);
 
     void setPosition(Tile *tile);
     void setPosition(int x, int y);
 
     bool isFree() { return isFree; }
     void executeTask(Goal *goal);
+
     Goal *getCurrentGoal(); // If the robot is working, then return the goal robot is working on
+    Type getType() const override { return Type::Robot; }
 
     void print() override
     {

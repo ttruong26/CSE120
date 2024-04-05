@@ -6,10 +6,10 @@ Robot::Robot()
     _currentTile = nullptr;
 }
 
-Robot::Robot(Tile *tile, int id)
+Robot::Robot(int x, int y, int id)
 {
     robotId = id;
-    _currentTile = tile;
+    this->setPosition(x, y);
 }
 
 void Robot::setPosition(Tile *tile)
@@ -19,7 +19,8 @@ void Robot::setPosition(Tile *tile)
 
 void Robot::setPosition(int x, int y)
 {
-    _currentTile->setPosition(x, y);
+    _currentTile = new Tile(x, y);
+    _currentTile->setObject(this);
 }
 
 void Robot::executeTask(Goal *goal)
