@@ -85,6 +85,7 @@ void Workspace::placeLoadedGoals()
 
 void Workspace::updateTable()
 {
+    /*
     // Iterate through each goal in the map
     for (auto &pair : goalRobotMap)
     {
@@ -100,6 +101,7 @@ void Workspace::updateTable()
     }
 
     std::cout << "Table updated." << std::endl;
+    */
 }
 
 void Workspace::addRobotToGoal(Goal *goal, Robot *robot)

@@ -11,6 +11,7 @@ public:
     Line();
     Line(int x1, int y1, int x2, int y2);
 
+    // Setter for the end point of the line.
     void setEndPoints(Tile *start, Tile *end);
     void setEndPoints(int x1, int y1, int x2, int y2);
 

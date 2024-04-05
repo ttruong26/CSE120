@@ -10,6 +10,9 @@ Line::Line()
     _y2 = 0;
 }
 
+// Constructor
+// (x1, y1): Starting point of the line
+// (x2, y2): Ending point of the line
 Line::Line(int x1, int y1, int x2, int y2)
 {
     this->setEndPoints(x1, y1, x2, y2);
@@ -21,6 +24,8 @@ void Line::setEndPoints(Tile *start, Tile *end)
     _endPoint = end;
 }
 
+// (x1, y1): Starting point of the line
+// (x2, y2): Ending point of the line
 void Line::setEndPoints(int x1, int y1, int x2, int y2)
 {
     _x1 = x1;
@@ -28,11 +33,13 @@ void Line::setEndPoints(int x1, int y1, int x2, int y2)
     _x2 = x2;
     _y2 = y2;
 
+    // Create tileObjects from the input coordinates, and set the tile object to a Wall/Line
     _currentTile = new Tile(x1, y1);
     _endPoint = new Tile(x2, y2);
     _currentTile->setObject(this);
     _endPoint->setObject(this);
 
+    // Given the two endpoints, draw a line segment to connect the two points
     this->drawLine();
 }
 

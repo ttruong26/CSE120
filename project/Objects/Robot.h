@@ -13,7 +13,7 @@ public:
     void setPosition(Tile *tile);
     void setPosition(int x, int y);
 
-    bool isFree() { return isFree; }
+    bool isFree() { return _isFree; }
     void executeTask(Goal *goal);
 
     Goal *getCurrentGoal(); // If the robot is working, then return the goal robot is working on
@@ -26,7 +26,7 @@ public:
 
 private:
     int robotId;
-    bool isFree;
+    bool _isFree;
     Tile *_nextTile;
 
     Goal *currentGoal; // To know what goal a robot is working on.
