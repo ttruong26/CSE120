@@ -25,4 +25,6 @@ private:
     TileGraph *graph;          // Graph to hold coordinates for mapObjects
     std::vector<Goal *> goals; // Holds all of the goals on the workspace, loaded from the map file. Goals have predetermined position coordinates.
     std::vector<Line *> lines;
+
+    std::unordered_map<Goal *, std::vector<Robot *>> goalRobotMap;
 };
