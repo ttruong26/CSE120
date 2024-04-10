@@ -59,15 +59,39 @@ Tile *TileGraph::getTileAt(int x, int y)
 // Convert (x,y) to array indicies and place the tile in the array
 void TileGraph::placeTiletoArray(int x, int y, Tile *tile)
 {
-    int indexX = x - _origin._x;
-    int indexY = y - _origin._y;
-    tiles[indexY][indexX] = tile;
+
+    if (x < _origin._x || x >= _width + _origin._x || y < _origin._y || y >= _height + _origin._y)
+    {
+        std::cout << "Tile out of bounds" << std::endl;
+    }
+
+    else
+    {
+        int indexX = x - _origin._x;
+        int indexY = y - _origin._y;
+        tiles[indexY][indexX] = tile;
+    }
 }
 
 void TileGraph::placeObject(MapObject *object)
 {
-    // Get the xPosition, yPosition, and currTile from a mapObject, and place it in the tile array
-    placeTiletoArray(object->getCurrentPosition()->getX(), object->getCurrentPosition()->getY(), object->getCurrentPosition());
+    // Line behavior is different from other objects. Has a start and endpoint, with a line connecting the two points.
+    // Integer points lying on the line are generated in the Line object, and all of the tiles need to be stored in the tile array
+    if (object->getType() == MapObject::Type::Wall)
+    {
+        Line *line = dynamic_cast<Line *>(object);
+        // Get the xPosition, yPosition, and currTile from the Line, and place it in the tile array
+        for (int i = 0; i < line->getTiles().size(); i++)
+        {
+            placeTiletoArray(line->getTiles()[i]->getX(), line->getTiles()[i]->getY(), line->getTiles()[i]);
+        }
+    }
+
+    else
+    {
+        // Get the xPosition, yPosition, and currTile from a mapObject, and place it in the tile array
+        placeTiletoArray(object->getCurrentPosition()->getX(), object->getCurrentPosition()->getY(), object->getCurrentPosition());
+    }
 }
 
 int TileGraph::getWidth()

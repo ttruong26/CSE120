@@ -28,6 +28,7 @@ public:
     TileGraph(int w, int h, int originX, int originY);
 
     void setBounds(int w, int h, int originX, int originY);
+
     // Used for heuristic calculation in pathfinding.
     std::array<Tile *, 4> getNeighbors(Tile *tile);     // Returns the neighbors of given tile N,S,E,W
     std::array<Tile *, 8> getNeighborsDiag(Tile *tile); // Returns all surronding neighbors of given tile N,NE,NW...
@@ -37,7 +38,7 @@ public:
     Tile *getTileAt(int x, int y);
     void placeTiletoArray(int x, int y, Tile *tile); // Helper funciton for placeObject()
 
-    void placeObject(MapObject *object); //
+    void placeObject(MapObject *object); // Store a MapObject into the tile array
 
     int getWidth();
     int getHeight();

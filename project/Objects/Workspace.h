@@ -22,7 +22,7 @@ public:
     void addRobotToGoal(Goal *goal, Robot *robot);
 
 private:
-    TileGraph *graph;          // Graph to hold coordinates for mapObjects
+    TileGraph *graph;          // Graph to store coordinates for mapObjects
     std::vector<Goal *> goals; // Holds all of the goals on the workspace, loaded from the map file. Goals have predetermined position coordinates.
     std::vector<Line *> lines;
 

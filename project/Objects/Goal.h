@@ -11,13 +11,12 @@ class Goal : public MapObject
 {
 public:
     Goal();
-    Goal(Tile *tile, int id);
     Goal(int x, int y, double heading, std::string id);
 
-    Type getType() const override { return Type::Goal; }
-    void setPosition(Tile *tile);
+    Type getType() const override { return Type::Goal; } // Determine whether the MapObject is a Goal.
     void setPosition(int x, int y);
-    bool isWorking() { return _isActive; }
+
+    bool isWorking() { return _isActive; } // Ensure robot multiple robots don't work on the same goal.
 
     void print() override
     {
