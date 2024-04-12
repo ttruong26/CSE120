@@ -28,32 +28,36 @@ void TileGraph::setBounds(int w, int h, int originX, int originY)
 {
     // We index from 0 to height + 1, and weight +1. This is because the # of points on a line of length n is n+1
     // Ex: 0,0 to 0,1 is 2 points but is a line segment of length 1.
-    for (int y = 0; y < h + 1; y++)
+    for (int y = 0; y <= h; y++)
     {
         tiles.push_back(std::vector<Tile *>());
-        for (int x = 0; x < w + 1; x++)
+        for (int x = 0; x <= w; x++)
         {
             Tile *tile = new Tile(originX + x, originY + y);
             tiles[y].push_back(tile);
         }
     }
 
-    _origin = Point(originX, originY);
-    _width = w;
-    _height = h;
+    this->_origin.setPoint(originX, originY);
+    this->_width = w;
+    this->_height = h;
 }
 
 Tile *TileGraph::getTileAt(int x, int y)
 {
-    if (x < _origin._x || x >= _width + _origin._x || y < _origin._y || y >= _height + _origin._y)
+    if (x < _origin._x || x > _width + _origin._x || y < _origin._y || y > _height + _origin._y)
     {
-        std::cout << "Tile out of bounds" << std::endl;
+        std::cout << "Cannot Access Tile out of bounds"
+                  << " (" << x << " " << y << ")" << std::endl;
         return NULL;
     }
 
-    int indexX = x - _origin._x;
-    int indexY = y - _origin._y;
-    return tiles[indexY][indexX];
+    else
+    {
+        int indexX = x - _origin._x;
+        int indexY = y - _origin._y;
+        return tiles[indexY][indexX];
+    }
 }
 
 // Convert (x,y) to array indicies and place the tile in the array
@@ -62,7 +66,8 @@ void TileGraph::placeTiletoArray(int x, int y, Tile *tile)
 
     if (x < _origin._x || x >= _width + _origin._x || y < _origin._y || y >= _height + _origin._y)
     {
-        std::cout << "Tile out of bounds" << std::endl;
+        std::cout << "Cannot Place Tile out of bounds"
+                  << " (" << x << " " << y << ") " << std::endl;
     }
 
     else
@@ -77,9 +82,9 @@ void TileGraph::placeObject(MapObject *object)
 {
     // Line behavior is different from other objects. Has a start and endpoint, with a line connecting the two points.
     // Integer points lying on the line are generated in the Line object, and all of the tiles need to be stored in the tile array
-    if (object->getType() == MapObject::Type::Wall)
+    Line *line = dynamic_cast<Line *>(object);
+    if (line != nullptr)
     {
-        Line *line = dynamic_cast<Line *>(object);
         // Get the xPosition, yPosition, and currTile from the Line, and place it in the tile array
         for (int i = 0; i < line->getTiles().size(); i++)
         {

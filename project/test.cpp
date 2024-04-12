@@ -11,14 +11,14 @@ int main()
 
     TileGraph tg(10, 10, -10, -10);
     tg.printGraph();
-    Tile *tile = tg.getTileAt(-3, -3);
+    Tile *tile = tg.getTileAt(0, 0);
     tile->Print();
 
     Workspace ws;
     ws.loadData();
     ws.printGoals();
     ws.placeLoadedGoals();
-    ws.placeLoadedLines();
+    ws.placeLoadedObstacles();
 
     return 0;
 }

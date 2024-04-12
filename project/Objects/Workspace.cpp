@@ -7,7 +7,7 @@ Workspace::Workspace()
 
 void Workspace::loadData()
 {
-    MapLoader::LoadMap(*graph, goals, lines, "mapfiles/test.map");
+    MapLoader::LoadMap(*graph, goals, lines, dataPoints, "mapfiles/test.map");
 }
 
 void Workspace::printGoals()
@@ -17,15 +17,9 @@ void Workspace::printGoals()
     {
         goals[i]->print();
     }
-    /*
-    for (int i = 0; i < lines.size(); i++)
-    {
-        lines[i]->print();
-    }
-    */
 }
 
-void Workspace::placeLoadedLines()
+void Workspace::placeLoadedObstacles()
 {
 
     for (int i = 0; i < lines.size(); i++)
@@ -37,6 +31,24 @@ void Workspace::placeLoadedLines()
         graph->placeObject(lines[i]);
     }
 
+    for (int i = 0; i < dataPoints.size(); i++)
+    {
+        graph->placeObject(dataPoints[i]);
+    }
+
+    graph->getTileAt(-15840, -11900)->getObject()->print();
+    /*
+    if (graph->getTileAt(-15840, -11900)->isWall() == true)
+    {
+        std::cout << "Wall placed at (-15840, -11900)";
+    }
+    else
+    {
+        std::cout << "Wall not placed at (-15840, -11900)";
+    }
+    */
+
+    /* Test
     graph->getTileAt(-25582, -12574)->getObject()->print();
     graph->getTileAt(-25582, -12575)->Print();
 
@@ -57,6 +69,7 @@ void Workspace::placeLoadedLines()
     {
         std::cout << "Wall not placed at ( -25582, -12575)";
     }
+    */
 }
 
 void Workspace::placeLoadedGoals()

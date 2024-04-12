@@ -2,13 +2,14 @@
 
 using namespace std;
 
-void MapLoader::LoadMap(TileGraph &graph, std::vector<Goal *> &goals, std::vector<Line *> &lines, std::string fileName)
+void MapLoader::LoadMap(TileGraph &graph, std::vector<Goal *> &goals, std::vector<Line *> &lines, std::vector<Data *> &points, std::string fileName)
 {
     Tile *tile = NULL;
     vector<Point> boundCoordinates;
 
     string line;
-    bool isInLinesSection = false;
+    bool isProcessingLines = false;
+    bool isProcessingData = false;
     ifstream mapFile(fileName);
 
     if (!mapFile.is_open())
@@ -25,15 +26,20 @@ void MapLoader::LoadMap(TileGraph &graph, std::vector<Goal *> &goals, std::vecto
 
         if (line == "LINES")
         {
-            isInLinesSection = true; // Found the "LINES" section
-            continue;                // Skip processing this line and move to the next line
+            isProcessingLines = true; // Found the "LINES" section
+            continue;                 // Skip processing this line and move to the next line
         }
-
-        if (isInLinesSection)
+        else if (line == "DATA")
+        {
+            isProcessingData = true;
+            isProcessingLines = false;
+            continue;
+        }
+        if (isProcessingLines)
         {
             if (line.empty() || isalpha(line[0]))
             {
-                // If a new section is encountered or an empty line, end the loop
+                isProcessingLines = false;
                 break;
             }
 
@@ -49,6 +55,28 @@ void MapLoader::LoadMap(TileGraph &graph, std::vector<Goal *> &goals, std::vecto
             else
             {
                 std::cerr << "Failed to parse line: " << line << std::endl;
+            }
+        }
+
+        // Process the points under the DATA section in the map file
+        if (isProcessingData)
+        {
+            if (line.empty() || isalpha(line[0]))
+            {
+                isProcessingData = false; // Stop processing data if an empty line or a new section is encountered
+                continue;
+            }
+            std::istringstream iss(line);
+            Data *d = new Data();
+            int x, y;
+            if (iss >> x >> y)
+            {
+                d->setPosition(x, y);
+                points.push_back(d);
+            }
+            else
+            {
+                std::cerr << "Failed to parse data point: " << line << std::endl;
             }
         }
 
