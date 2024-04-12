@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../TileGraph/TileGraph.h"
+#include "../graph/TileGraph.h"
 #include "../Objects/Goal.h"
 #include "../Objects/Line.h"
 #include "../Objects/Data.h"

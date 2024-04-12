@@ -4,6 +4,17 @@
 #include "Goal.h"
 #include "MapObject.h"
 
+#include <queue>
+#include <unordered_set>
+
+struct CompareTile
+{
+    bool operator()(Tile *a, Tile *b) const
+    {
+        return a->f > b->f;
+    }
+};
+
 class Robot : public MapObject
 {
 public:
@@ -25,6 +36,8 @@ public:
         std::cout << "Robot ID: " << robotId << ", Position: (" << _currentTile->getPosition()._x << ", " << _currentTile->getPosition()._y << ")" << std::endl;
     }
 
+    static bool avoidPath(Tile *tile);
+
 private:
     int robotId;
     bool _isFree;
@@ -32,4 +45,8 @@ private:
 
     Goal *currentGoal; // To know what goal a robot is working on.
     double height;     // Not sure if needed for clearance issues
+
+    static bool avoidPath(Tile *tile);
+
+    double reconstructPath(Tile *end);
 };

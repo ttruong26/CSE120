@@ -2,7 +2,7 @@
 #define LINE_H
 
 #include "MapObject.h"
-#include "../TileGraph/Tile.h"
+#include "../graph/Tile.h"
 #include <vector>
 
 class Line : public MapObject
@@ -17,7 +17,7 @@ public:
 
     Type getType() const override { return Type::Wall; }
     std::vector<Tile *> getTiles() { return _tiles; }
-    void drawLine(); // Use Bresenhams algorithm to draw a line segment to connect the two endpoints, giving every point on the line an integer value for effeciency.
+    void drawLine(); // Use Bresenhams algorithm to draw a line segment that connects the two endpoints, giving every point on the line an integer value for effeciency.
 
     void print() override
     {

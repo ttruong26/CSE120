@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <string>
-#include "../TileGraph/Tile.h"
+#include "../graph/Tile.h"
 #include <ctime>
 #include "MapObject.h"
 

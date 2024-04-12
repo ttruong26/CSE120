@@ -2,12 +2,13 @@
 
 Workspace::Workspace()
 {
-    graph = new TileGraph();
+    mGraph = new TileGraph();
 }
 
 void Workspace::loadData()
 {
-    MapLoader::LoadMap(*graph, goals, lines, dataPoints, "mapfiles/test.map");
+    MapLoader::LoadMap(*mGraph, goals, lines, dataPoints, "mapfiles/test.map");
+    MapObject::tileGraph = mGraph;
 }
 
 void Workspace::printGoals()
@@ -28,15 +29,15 @@ void Workspace::placeLoadedObstacles()
         {
             continue;
         }
-        graph->placeObject(lines[i]);
+        mGraph->placeObject(lines[i]);
     }
 
     for (int i = 0; i < dataPoints.size(); i++)
     {
-        graph->placeObject(dataPoints[i]);
+        mGraph->placeObject(dataPoints[i]);
     }
 
-    graph->getTileAt(-15840, -11900)->getObject()->print();
+    mGraph->getTileAt(-15840, -11900)->getObject()->print();
     /*
     if (graph->getTileAt(-15840, -11900)->isWall() == true)
     {
@@ -77,7 +78,7 @@ void Workspace::placeLoadedGoals()
     for (int i = 0; i < goals.size(); i++)
 
     {
-        graph->placeObject(goals[i]);
+        mGraph->placeObject(goals[i]);
     }
 
     /*

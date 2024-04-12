@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../TileGraph/TileGraph.h"
+#include "../graph/TileGraph.h"
 #include "../static/MapLoader.h"
 #include "Robot.h"
 
@@ -22,7 +22,7 @@ public:
     void addRobotToGoal(Goal *goal, Robot *robot);
 
 private:
-    TileGraph *graph;          // Graph to store coordinates for mapObjects
+    TileGraph *mGraph;         // Graph to store coordinates for mapObjects
     std::vector<Goal *> goals; // Holds all of the goals on the workspace, loaded from the map file. Goals have predetermined position coordinates.
     std::vector<Line *> lines;
     std::vector<Data *> dataPoints;
