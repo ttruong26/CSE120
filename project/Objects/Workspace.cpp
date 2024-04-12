@@ -12,7 +12,7 @@ void Workspace::loadData()
 
 void Workspace::printGoals()
 {
-    graph->print();
+    // graph->print();
     for (int i = 0; i < goals.size(); i++)
     {
         goals[i]->print();
@@ -80,6 +80,7 @@ void Workspace::placeLoadedGoals()
         graph->placeObject(goals[i]);
     }
 
+    /*
     graph->getTileAt(-23540, -6326)->getObject()->print();
     if (graph->getTileAt(-23540, -6326)->isGoal() == true)
     {
@@ -94,6 +95,7 @@ void Workspace::placeLoadedGoals()
     {
         std::cout << "Goal not placed at (-23540, -6325)";
     }
+    */
 }
 
 void Workspace::updateTable()

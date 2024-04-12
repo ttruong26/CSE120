@@ -16,7 +16,8 @@ public:
     bool isFree() { return _isFree; }
     void executeTask(Goal *goal);
 
-    Goal *getCurrentGoal(); // If the robot is working, then return the goal robot is working on
+    double findPathDistance(Goal *goal); // Find the distance between the robot and the goal
+    Goal *getCurrentGoal();              // If the robot is working, then return the goal robot is working on
     Type getType() const override { return Type::Robot; }
 
     void print() override
