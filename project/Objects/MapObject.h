@@ -1,13 +1,13 @@
 #ifndef MAPOBJECT_H
 #define MAPOBJECT_H
 
-class TileGraph;
-class Tile;
+#include "../graph/TileGraph.h"
+#include "../graph/Tile.h"
 
 class MapObject
 {
 public:
-    static TileGraph *tileGraph;
+    static TileGraph *_graph;
     enum class Type
     {
         Robot,

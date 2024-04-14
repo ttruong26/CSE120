@@ -61,8 +61,7 @@ double Robot::findPathDistance(Goal *goal)
 
         closedSet.insert(current);
 
-        /*
-        auto neighbors = graph->getNeighbors(current); // Get neighbors of the current tile
+        auto neighbors = _graph->getNeighbors(current); // Get neighbors of the current tile
         for (Tile *neighbor : neighbors)
         {
             if (!neighbor || closedSet.find(neighbor) != closedSet.end() || neighbor->isWall()) // Make sure the neighbor is not out of bounds, not already visited, and not a wall
@@ -82,7 +81,6 @@ double Robot::findPathDistance(Goal *goal)
                 }
             }
         }
-        */
     }
 
     return -1; // If no path is found

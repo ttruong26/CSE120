@@ -8,7 +8,7 @@ Workspace::Workspace()
 void Workspace::loadData()
 {
     MapLoader::LoadMap(*mGraph, goals, lines, dataPoints, "mapfiles/test.map");
-    MapObject::tileGraph = mGraph;
+    MapObject::_graph = mGraph;
 }
 
 void Workspace::printGoals()
