@@ -2,6 +2,7 @@
 #define LINE_H
 
 #include "MapObject.h"
+#include "../graph/Tile.h"
 #include <vector>
 
 class Line : public MapObject

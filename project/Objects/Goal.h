@@ -5,6 +5,7 @@
 #include <string>
 #include <ctime>
 #include "MapObject.h"
+#include "../graph/Tile.h"
 
 class Goal : public MapObject
 {

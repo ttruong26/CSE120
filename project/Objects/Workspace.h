@@ -27,5 +27,7 @@ private:
     std::vector<Line *> lines;
     std::vector<Data *> dataPoints;
 
+    Robot *robot1;
+
     std::unordered_map<Goal *, std::vector<Robot *>> goalRobotMap;
 };

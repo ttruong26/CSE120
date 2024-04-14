@@ -9,6 +9,8 @@ void Workspace::loadData()
 {
     MapLoader::LoadMap(*mGraph, goals, lines, dataPoints, "mapfiles/test.map");
     MapObject::_graph = mGraph;
+    robot1 = new Robot(-26099, -19959, 0);
+    // mGraph->placeObject(robot1);
 }
 
 void Workspace::printGoals()

@@ -2,6 +2,7 @@
 
 #include "Goal.h"
 #include "MapObject.h"
+#include "../graph/Tile.h"
 
 #include <queue>
 #include <unordered_set>
@@ -18,6 +19,7 @@ class Robot : public MapObject
 {
 public:
     Robot();
+    Robot(int x, int y);
     Robot(int x, int y, int id);
 
     void setPosition(Tile *tile);
@@ -35,8 +37,6 @@ public:
     {
         std::cout << "Robot ID: " << robotId << ", Position: (" << _currentTile->getPosition()._x << ", " << _currentTile->getPosition()._y << ")" << std::endl;
     }
-
-    static bool avoidPath(Tile *tile);
 
 private:
     int robotId;

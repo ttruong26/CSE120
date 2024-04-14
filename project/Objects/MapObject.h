@@ -1,8 +1,8 @@
 #ifndef MAPOBJECT_H
 #define MAPOBJECT_H
 
-#include "../graph/TileGraph.h"
-#include "../graph/Tile.h"
+class TileGraph;
+class Tile;
 
 class MapObject
 {

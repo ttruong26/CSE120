@@ -29,6 +29,7 @@ void Robot::executeTask(Goal *goal)
 
 Goal *Robot::getCurrentGoal()
 {
+    return currentGoal;
 }
 
 double Robot::findPathDistance(Goal *goal)
@@ -61,6 +62,7 @@ double Robot::findPathDistance(Goal *goal)
 
         closedSet.insert(current);
 
+        /*
         auto neighbors = _graph->getNeighbors(current); // Get neighbors of the current tile
         for (Tile *neighbor : neighbors)
         {
@@ -81,6 +83,7 @@ double Robot::findPathDistance(Goal *goal)
                 }
             }
         }
+        */
     }
 
     return -1; // If no path is found
