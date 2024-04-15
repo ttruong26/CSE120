@@ -33,7 +33,7 @@ Goal *Robot::getCurrentGoal()
     return currentGoal;
 }
 
-double Robot::findPathDistance(Goal *goal)
+double Robot::preditctTimeEstimation(Goal *goal)
 {
     Tile *start = this->_currentTile;
     Tile *end = goal->getCurrentPosition();
@@ -112,10 +112,6 @@ double Robot::findPathDistance(Goal *goal)
                     next->h = next->calculateHeuristic(end);
                     next->g = newCost;
                     next->f = newCost + next->h;
-                    /*
-                    double heuristic = next->calculateHeuristic(end);
-                    double f = newCost + heuristic; // Total estimated cost
-                    */
 
                     // Push neighbor node onto open set
                     openSet.push(next);

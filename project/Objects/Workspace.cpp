@@ -21,7 +21,7 @@ void Workspace::printGoals()
         goals[i]->print();
     }
 
-    double distance = robot1->findPathDistance(goals[0]);
+    double distance = robot1->preditctTimeEstimation(goals[0]);
     std::cout << "Distance: " << distance << std::endl;
 }
 
@@ -116,7 +116,7 @@ void Workspace::updateTable()
         // Calculate distance of each robot from the goal
         std::sort(robots.begin(), robots.end(), [goal](Robot *a, Robot *b)
                   {
-                      // return a->distanceToGoal(goal) < b->distanceToGoal(goal); // Note distanceToGoal() should be replaced with the method that returns the time
+                      return a->preditctTimeEstimation(goal) < b->preditctTimeEstimation(goal);
                       //  from robot to destination.
                   });
     }
