@@ -37,6 +37,8 @@ public:
     //  - access to vector starts at 0, so the the bottom left most coordinate is at (0,0)
     Tile *getTileAt(int x, int y);
     void placeTiletoArray(int x, int y, Tile *tile); // Helper funciton for placeObject()
+    int getXIndex(Tile *tile);
+    int getYIndex(Tile *tile);
 
     void placeObject(MapObject *object); // Store a MapObject into the tile array
 

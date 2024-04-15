@@ -32,7 +32,7 @@ public:
     double f = 0.0;
     Tile *parent = nullptr;
     double calculateHeuristic(Tile *target);
-    int cost(Tile *target);
+    double cost(Tile *target);
 
     /*
     // Function to calculate distance between two points

@@ -19,7 +19,7 @@ double Tile::calculateHeuristic(Tile *target)
     return std::sqrt(dx * dx + dy * dy);
 }
 
-int Tile::cost(Tile *target)
+double Tile::cost(Tile *target)
 {
     int dx = std::abs(this->getX() - target->getX());
     int dy = std::abs(this->getY() - target->getY());

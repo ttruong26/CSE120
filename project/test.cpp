@@ -16,6 +16,7 @@ int main()
     Workspace ws;
     ws.loadData();
     ws.printGoals();
+
     ws.placeLoadedGoals();
     ws.placeLoadedObstacles();
 

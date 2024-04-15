@@ -3,6 +3,7 @@
 #include "Goal.h"
 #include "MapObject.h"
 #include "../graph/Tile.h"
+#include "../graph/TileGraph.h"
 
 #include <queue>
 #include <unordered_set>
@@ -19,8 +20,7 @@ class Robot : public MapObject
 {
 public:
     Robot();
-    Robot(int x, int y);
-    Robot(int x, int y, int id);
+    Robot(int x, int y, int id, double speed);
 
     void setPosition(Tile *tile);
     void setPosition(int x, int y);
@@ -42,6 +42,7 @@ private:
     int robotId;
     bool _isFree;
     Tile *_nextTile;
+    double avgSpeed;
 
     Goal *currentGoal; // To know what goal a robot is working on.
     double height;     // Not sure if needed for clearance issues

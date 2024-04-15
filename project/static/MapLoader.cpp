@@ -24,6 +24,41 @@ void MapLoader::LoadMap(TileGraph &graph, std::vector<Goal *> &goals, std::vecto
         int x, y;
         iss >> label;
 
+        if (label == "MinPos:")
+        {
+            iss >> x >> y;
+            Point p(x, y);
+            boundCoordinates.push_back(p);
+        }
+        else if (label == "MaxPos:")
+        {
+            iss >> x >> y;
+            Point p(x, y);
+            boundCoordinates.push_back(p);
+        }
+
+        else if (label == "Cairn:")
+        {
+            iss >> cairnType; // Read "GoalWithHeading"
+            if (cairnType == "GoalWithHeading")
+            {
+                int _x, _y;
+                Goal *goal;
+                double heading;
+                std::string id;
+                iss >> _x >> _y >> heading; // Read coordinates and heading
+                iss >> ignoredString;       // Read and ignore the next token (should be empty quotes "")
+                iss >> iconLabel;           // Read "ICON"
+                if (iconLabel == "ICON")
+                {
+                    iss.ignore(std::numeric_limits<std::streamsize>::max(), '\"'); // Skip to the start of the ID (start quote)
+                    std::getline(iss, id, '\"');                                   // Read the ID (up to the end quote)
+                    goal = new Goal(_x, _y, heading, id);
+                    goals.push_back(goal);
+                }
+            }
+        }
+
         if (line == "LINES")
         {
             isProcessingLines = true; // Found the "LINES" section
@@ -77,41 +112,6 @@ void MapLoader::LoadMap(TileGraph &graph, std::vector<Goal *> &goals, std::vecto
             else
             {
                 std::cerr << "Failed to parse data point: " << line << std::endl;
-            }
-        }
-
-        if (label == "MinPos:")
-        {
-            iss >> x >> y;
-            Point p(x, y);
-            boundCoordinates.push_back(p);
-        }
-        else if (label == "MaxPos:")
-        {
-            iss >> x >> y;
-            Point p(x, y);
-            boundCoordinates.push_back(p);
-        }
-
-        else if (label == "Cairn:")
-        {
-            iss >> cairnType; // Read "GoalWithHeading"
-            if (cairnType == "GoalWithHeading")
-            {
-                int _x, _y;
-                Goal *goal;
-                double heading;
-                std::string id;
-                iss >> _x >> _y >> heading; // Read coordinates and heading
-                iss >> ignoredString;       // Read and ignore the next token (should be empty quotes "")
-                iss >> iconLabel;           // Read "ICON"
-                if (iconLabel == "ICON")
-                {
-                    iss.ignore(std::numeric_limits<std::streamsize>::max(), '\"'); // Skip to the start of the ID (start quote)
-                    std::getline(iss, id, '\"');                                   // Read the ID (up to the end quote)
-                    goal = new Goal(_x, _y, heading, id);
-                    goals.push_back(goal);
-                }
             }
         }
     }

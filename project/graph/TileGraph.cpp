@@ -46,8 +46,10 @@ Tile *TileGraph::getTileAt(int x, int y)
 {
     if (x < _origin._x || x > _width + _origin._x || y < _origin._y || y > _height + _origin._y)
     {
+        /*
         std::cout << "Cannot Access Tile out of bounds"
                   << " (" << x << " " << y << ")" << std::endl;
+                  */
         return NULL;
     }
 
@@ -57,6 +59,16 @@ Tile *TileGraph::getTileAt(int x, int y)
         int indexY = y - _origin._y;
         return tiles[indexY][indexX];
     }
+}
+
+int TileGraph::getXIndex(Tile *tile)
+{
+    return tile->getPosition()._x - _origin._x;
+}
+
+int TileGraph::getYIndex(Tile *tile)
+{
+    return tile->getPosition()._y - _origin._y;
 }
 
 // Convert (x,y) to array indicies and place the tile in the array

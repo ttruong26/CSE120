@@ -7,19 +7,22 @@ Workspace::Workspace()
 
 void Workspace::loadData()
 {
-    MapLoader::LoadMap(*mGraph, goals, lines, dataPoints, "mapfiles/test.map");
+    MapLoader::LoadMap(*mGraph, goals, lines, dataPoints, "mapfiles/Original.map");
     MapObject::_graph = mGraph;
-    robot1 = new Robot(-26099, -19959, 0);
-    // mGraph->placeObject(robot1);
+    robot1 = new Robot(-26099, -19959, 0, 1200);
+    mGraph->placeObject(robot1);
 }
 
 void Workspace::printGoals()
 {
-    // graph->print();
+    mGraph->print();
     for (int i = 0; i < goals.size(); i++)
     {
         goals[i]->print();
     }
+
+    double distance = robot1->findPathDistance(goals[0]);
+    std::cout << "Distance: " << distance << std::endl;
 }
 
 void Workspace::placeLoadedObstacles()
@@ -39,7 +42,7 @@ void Workspace::placeLoadedObstacles()
         mGraph->placeObject(dataPoints[i]);
     }
 
-    mGraph->getTileAt(-15840, -11900)->getObject()->print();
+    // mGraph->getTileAt(-15840, -11900)->getObject()->print();
     /*
     if (graph->getTileAt(-15840, -11900)->isWall() == true)
     {
