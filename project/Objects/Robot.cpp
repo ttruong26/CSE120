@@ -33,7 +33,7 @@ Goal *Robot::getCurrentGoal()
     return currentGoal;
 }
 
-double Robot::preditctTimeEstimation(Goal *goal)
+double Robot::predictTimeEstimation(Goal *goal)
 {
     Tile *start = this->_currentTile;
     Tile *end = goal->getCurrentPosition();
@@ -65,6 +65,7 @@ double Robot::preditctTimeEstimation(Goal *goal)
     // A* search loop
     while (!openSet.empty())
     {
+        // std::cout << "In" << std::endl;
         Tile *current = openSet.top();
         openSet.pop();
 

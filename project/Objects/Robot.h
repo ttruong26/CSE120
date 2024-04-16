@@ -28,7 +28,7 @@ public:
     bool isFree() { return _isFree; }
     void executeTask(Goal *goal);
 
-    double preditctTimeEstimation(Goal *goal); // Find the distance between the robot and the goal
+    double predictTimeEstimation(Goal *goal); // Find the distance between the robot and the goal
     Goal *getCurrentGoal();                    // If the robot is working, then return the goal robot is working on
 
     Type getType() const override { return Type::Robot; }
@@ -46,6 +46,8 @@ private:
 
     Goal *currentGoal; // To know what goal a robot is working on.
     double height;     // Not sure if needed for clearance issues
+
+    double prevBestTime;
 
     static bool avoidPath(Tile *tile);
 
