@@ -80,6 +80,7 @@ double performAStar(int startX, int startY, int goalX, int goalY, double average
 
         // Check if goal reached
         if (current.x == goalX && current.y == goalY) {
+            //cout << "Distance to goal: " << current.g/1000 << " meters" << endl;
             return current.g / averageSpeed; // Return time to reach goal
         }
 
