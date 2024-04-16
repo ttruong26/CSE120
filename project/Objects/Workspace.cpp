@@ -106,23 +106,23 @@ void Workspace::placeLoadedGoals()
 
 void Workspace::updateTable()
 {
-    /*
-    // Iterate through each goal in the map
-    for (auto &pair : goalRobotMap)
-    {
-        Goal *goal = pair.first;
-        std::vector<Robot *> &robots = pair.second;
+    
+    // // Iterate through each goal in the map
+    // for (auto &pair : goalRobotMap)
+    // {
+    //     Goal *goal = pair.first;
+    //     std::vector<Robot *> &robots = pair.second;
 
-        // Calculate distance of each robot from the goal
-        std::sort(robots.begin(), robots.end(), [goal](Robot *a, Robot *b)
-                  {
-                      return a->predictTimeEstimation(goal) < b->predictTimeEstimation(goal);
-                      //  from robot to destination.
-                  });
-    }
+    //     // Calculate distance of each robot from the goal
+    //     std::sort(robots.begin(), robots.end(), [goal](Robot *a, Robot *b)
+    //     {
+    //         return a->predictTimeEstimation(goal) < b->predictTimeEstimation(goal);
+    //         //  from robot to destination.
+    //     });
+    // }
 
-    std::cout << "Table updated." << std::endl;
-    */
+    // std::cout << "Table updated." << std::endl;
+    
 }
 
 void Workspace::addRobotToGoal(Goal *goal, Robot *robot)

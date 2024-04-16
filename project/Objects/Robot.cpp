@@ -65,7 +65,7 @@ double Robot::predictTimeEstimation(Goal *goal)
     // A* search loop
     while (!openSet.empty())
     {
-        // std::cout << "In" << std::endl;
+        // std::cout << "In" << std::endl; // gets to here
         Tile *current = openSet.top();
         openSet.pop();
 

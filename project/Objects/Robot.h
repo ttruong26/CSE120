@@ -16,6 +16,12 @@ struct CompareTile
     }
 };
 
+// struct RobotData
+// {
+//     Robot* r;
+//     double travelTime;
+// };
+
 class Robot : public MapObject
 {
 public:
