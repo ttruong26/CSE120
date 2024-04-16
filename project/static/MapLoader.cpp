@@ -2,13 +2,14 @@
 
 using namespace std;
 
-void MapLoader::LoadMap(TileGraph &graph, std::vector<Goal *> &goals, std::vector<Line *> &lines, std::string fileName)
+void MapLoader::LoadMap(TileGraph &graph, std::vector<Goal *> &goals, std::vector<Line *> &lines, std::vector<Data *> &points, std::string fileName)
 {
     Tile *tile = NULL;
     vector<Point> boundCoordinates;
 
     string line;
-    bool isInLinesSection = false;
+    bool isProcessingLines = false;
+    bool isProcessingData = false;
     ifstream mapFile(fileName);
 
     if (!mapFile.is_open())
@@ -22,35 +23,6 @@ void MapLoader::LoadMap(TileGraph &graph, std::vector<Goal *> &goals, std::vecto
         std::string label, cairnType, ignoredString, iconLabel, id;
         int x, y;
         iss >> label;
-
-        if (line == "LINES")
-        {
-            isInLinesSection = true; // Found the "LINES" section
-            continue;                // Skip processing this line and move to the next line
-        }
-
-        if (isInLinesSection)
-        {
-            if (line.empty() || isalpha(line[0]))
-            {
-                // If a new section is encountered or an empty line, end the loop
-                break;
-            }
-
-            std::istringstream iss(line);
-            Line *l = new Line();
-            int x1, y1, x2, y2;
-            // Extract coordinates from the line and store them in the 'Line' struct
-            if (iss >> x1 >> y1 >> x2 >> y2)
-            {
-                l->setEndPoints(x1, y1, x2, y2);
-                lines.push_back(l);
-            }
-            else
-            {
-                std::cerr << "Failed to parse line: " << line << std::endl;
-            }
-        }
 
         if (label == "MinPos:")
         {
@@ -84,6 +56,62 @@ void MapLoader::LoadMap(TileGraph &graph, std::vector<Goal *> &goals, std::vecto
                     goal = new Goal(_x, _y, heading, id);
                     goals.push_back(goal);
                 }
+            }
+        }
+
+        if (line == "LINES")
+        {
+            isProcessingLines = true; // Found the "LINES" section
+            continue;                 // Skip processing this line and move to the next line
+        }
+        else if (line == "DATA")
+        {
+            isProcessingData = true;
+            isProcessingLines = false;
+            continue;
+        }
+        if (isProcessingLines)
+        {
+            if (line.empty() || isalpha(line[0]))
+            {
+                isProcessingLines = false;
+                break;
+            }
+
+            std::istringstream iss(line);
+            Line *l = new Line();
+            int x1, y1, x2, y2;
+            // Extract coordinates from the line and store them in the 'Line' struct
+            if (iss >> x1 >> y1 >> x2 >> y2)
+            {
+                l->setEndPoints(x1, y1, x2, y2);
+                lines.push_back(l);
+            }
+            else
+            {
+                std::cerr << "Failed to parse line: " << line << std::endl;
+            }
+        }
+
+        // Process the points under the DATA section in the map file
+        if (isProcessingData)
+        {
+            if (line.empty() || isalpha(line[0]))
+            {
+                isProcessingData = false; // Stop processing data if an empty line or a new section is encountered
+                continue;
+            }
+            std::istringstream iss(line);
+            Data *d = new Data();
+            int x, y;
+            if (iss >> x >> y)
+            {
+                d->setPosition(x, y);
+                points.push_back(d);
+            }
+            else
+            {
+                std::cerr << "Failed to parse data point: " << line << std::endl;
             }
         }
     }

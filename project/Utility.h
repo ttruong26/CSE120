@@ -16,6 +16,12 @@ struct Point
         this->_x = x;
         this->_y = y;
     }
+
+    void setPoint(int x, int y)
+    {
+        this->_x = x;
+        this->_y = y;
+    }
 };
 
 struct Rect

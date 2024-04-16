@@ -2,7 +2,7 @@
 
 // Represents the Obstacle points from the map file under the Data section
 #include "MapObject.h"
-#include "../TileGraph/Tile.h"
+#include "../graph/Tile.h"
 #include <iostream>
 
 class Data : public MapObject

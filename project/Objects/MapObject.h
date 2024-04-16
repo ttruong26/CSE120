@@ -7,7 +7,7 @@ class Tile;
 class MapObject
 {
 public:
-    static TileGraph *graph;
+    static TileGraph *_graph;
     enum class Type
     {
         Robot,

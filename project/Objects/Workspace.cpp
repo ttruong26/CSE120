@@ -2,30 +2,30 @@
 
 Workspace::Workspace()
 {
-    graph = new TileGraph();
+    mGraph = new TileGraph();
 }
 
 void Workspace::loadData()
 {
-    MapLoader::LoadMap(*graph, goals, lines, "mapfiles/test.map");
+    MapLoader::LoadMap(*mGraph, goals, lines, dataPoints, "mapfiles/test.map");
+    MapObject::_graph = mGraph;
+    robot1 = new Robot(-26099, -19959, 0, 1200);
+    mGraph->placeObject(robot1);
 }
 
 void Workspace::printGoals()
 {
-    graph->print();
+    mGraph->print();
     for (int i = 0; i < goals.size(); i++)
     {
         goals[i]->print();
     }
-    /*
-    for (int i = 0; i < lines.size(); i++)
-    {
-        lines[i]->print();
-    }
-    */
+
+    double distance = robot1->preditctTimeEstimation(goals[0]);
+    std::cout << "Distance: " << distance << std::endl;
 }
 
-void Workspace::placeLoadedLines()
+void Workspace::placeLoadedObstacles()
 {
 
     for (int i = 0; i < lines.size(); i++)
@@ -34,9 +34,27 @@ void Workspace::placeLoadedLines()
         {
             continue;
         }
-        graph->placeObject(lines[i]);
+        mGraph->placeObject(lines[i]);
     }
 
+    for (int i = 0; i < dataPoints.size(); i++)
+    {
+        mGraph->placeObject(dataPoints[i]);
+    }
+
+    // mGraph->getTileAt(-15840, -11900)->getObject()->print();
+    /*
+    if (graph->getTileAt(-15840, -11900)->isWall() == true)
+    {
+        std::cout << "Wall placed at (-15840, -11900)";
+    }
+    else
+    {
+        std::cout << "Wall not placed at (-15840, -11900)";
+    }
+    */
+
+    /* Test
     graph->getTileAt(-25582, -12574)->getObject()->print();
     graph->getTileAt(-25582, -12575)->Print();
 
@@ -57,6 +75,7 @@ void Workspace::placeLoadedLines()
     {
         std::cout << "Wall not placed at ( -25582, -12575)";
     }
+    */
 }
 
 void Workspace::placeLoadedGoals()
@@ -64,9 +83,10 @@ void Workspace::placeLoadedGoals()
     for (int i = 0; i < goals.size(); i++)
 
     {
-        graph->placeObject(goals[i]);
+        mGraph->placeObject(goals[i]);
     }
 
+    /*
     graph->getTileAt(-23540, -6326)->getObject()->print();
     if (graph->getTileAt(-23540, -6326)->isGoal() == true)
     {
@@ -81,6 +101,7 @@ void Workspace::placeLoadedGoals()
     {
         std::cout << "Goal not placed at (-23540, -6325)";
     }
+    */
 }
 
 void Workspace::updateTable()
@@ -95,7 +116,7 @@ void Workspace::updateTable()
         // Calculate distance of each robot from the goal
         std::sort(robots.begin(), robots.end(), [goal](Robot *a, Robot *b)
                   {
-                      // return a->distanceToGoal(goal) < b->distanceToGoal(goal); // Note distanceToGoal() should be replaced with the method that returns the time
+                      return a->preditctTimeEstimation(goal) < b->preditctTimeEstimation(goal);
                       //  from robot to destination.
                   });
     }

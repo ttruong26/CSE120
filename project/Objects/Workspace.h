@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../TileGraph/TileGraph.h"
+#include "../graph/TileGraph.h"
 #include "../static/MapLoader.h"
 #include "Robot.h"
 
@@ -15,16 +15,19 @@ public:
 
     // Test functions
     void placeLoadedGoals(); // Test function to place goals on the graph
-    void placeLoadedLines();
+    void placeLoadedObstacles();
     void printGoals();
 
     void updateTable();
     void addRobotToGoal(Goal *goal, Robot *robot);
 
 private:
-    TileGraph *graph;          // Graph to store coordinates for mapObjects
+    TileGraph *mGraph;         // Graph to store coordinates for mapObjects
     std::vector<Goal *> goals; // Holds all of the goals on the workspace, loaded from the map file. Goals have predetermined position coordinates.
     std::vector<Line *> lines;
+    std::vector<Data *> dataPoints;
+
+    Robot *robot1;
 
     std::unordered_map<Goal *, std::vector<Robot *>> goalRobotMap;
 };
