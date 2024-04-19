@@ -18,6 +18,8 @@ public:
     void placeLoadedObstacles();
     void printGoals();
 
+    void assignRobotsToGoals();
+
     void updateTable();
     void addRobotToGoal(Goal *goal, Robot *robot);
 
@@ -29,5 +31,5 @@ private:
 
     Robot *robot1;
 
-    std::unordered_map<Goal *, std::vector<Robot *>> goalRobotMap;
+    std::unordered_map<Goal *, std::vector<Robot *>> _assignment; // Robot to goal assignment table. Each goal has all of the robots assigned to it, and we use the predicted time to determine which robot is the best fit for the goal.
 };

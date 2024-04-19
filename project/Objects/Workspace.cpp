@@ -108,7 +108,7 @@ void Workspace::updateTable()
 {
     /*
     // Iterate through each goal in the map
-    for (auto &pair : goalRobotMap)
+    for (auto &pair : _assignment)
     {
         Goal *goal = pair.first;
         std::vector<Robot *> &robots = pair.second;
@@ -128,16 +128,16 @@ void Workspace::updateTable()
 void Workspace::addRobotToGoal(Goal *goal, Robot *robot)
 {
     // Check if the goal exists in the map
-    if (goalRobotMap.find(goal) != goalRobotMap.end())
+    if (_assignment.find(goal) != _assignment.end())
     {
         // Goal exists, so add the robot to its vector
-        goalRobotMap[goal].push_back(robot);
+        _assignment[goal].push_back(robot);
     }
     else
     {
         // Goal doesn't exist, create a new entry in the map
         std::vector<Robot *> robotList;
         robotList.push_back(robot);
-        goalRobotMap[goal] = robotList;
+        _assignment[goal] = robotList;
     }
 }
