@@ -9,20 +9,44 @@ void Workspace::loadData()
 {
     MapLoader::LoadMap(*mGraph, goals, lines, dataPoints, "mapfiles/test.map");
     MapObject::_graph = mGraph;
+    this->placeLoadedGoals();
+    this->placeLoadedObstacles();
+
+    // Create robots
     robot1 = new Robot(-26099, -19959, 0, 1200);
     mGraph->placeObject(robot1);
+    robot2 = new Robot(-26099, -4859, 0, 1200);
+    mGraph->placeObject(robot2);
+
+    std::vector<Robot *> robots;
+    robots.push_back(robot1);
+    robots.push_back(robot2);
+    for (int i = 0; i < goals.size(); i++)
+    {
+        _assignment[goals[i]] = robots;
+    }
 }
 
 void Workspace::printGoals()
 {
     mGraph->print();
-    for (int i = 0; i < goals.size(); i++)
-    {
-        goals[i]->print();
-    }
 
     double distance = robot1->predictTimeEstimation(goals[0]);
-    std::cout << "Distance: " << distance << std::endl;
+    std::cout << "Time Prediction: " << distance << std::endl;
+    double distance2 = robot2->predictTimeEstimation(goals[0]);
+    std::cout << "Time Prediction: " << distance2 << std::endl;
+
+    for (auto &pair : _assignment)
+    {
+        Goal *goal = pair.first;
+        std::vector<Robot *> &robots = pair.second;
+
+        for (int i = 0; i < robots.size(); i++)
+        {
+            std::cout << "Robot " << i << " assigned to goal: ";
+            goal->print();
+        }
+    }
 }
 
 void Workspace::placeLoadedObstacles()
@@ -42,7 +66,7 @@ void Workspace::placeLoadedObstacles()
         mGraph->placeObject(dataPoints[i]);
     }
 
-    mGraph->getTileAt(-15840, -11900)->getObject()->print();
+    // mGraph->getTileAt(-15840, -11900)->getObject()->print();
     /*
     if (graph->getTileAt(-15840, -11900)->isWall() == true)
     {
@@ -125,6 +149,7 @@ void Workspace::updateTable()
     */
 }
 
+// We will assume that any robot can work on any goal
 void Workspace::addRobotToGoal(Goal *goal, Robot *robot)
 {
     // Check if the goal exists in the map

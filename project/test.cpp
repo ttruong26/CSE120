@@ -17,8 +17,5 @@ int main()
     ws.loadData();
     ws.printGoals();
 
-    ws.placeLoadedGoals();
-    ws.placeLoadedObstacles();
-
     return 0;
 }

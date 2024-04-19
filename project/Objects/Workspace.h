@@ -13,8 +13,8 @@ public:
     Workspace();
     void loadData();
 
-    // Test functions
-    void placeLoadedGoals(); // Test function to place goals on the graph
+    // Helper function to place loaded objects onto tileMap
+    void placeLoadedGoals();
     void placeLoadedObstacles();
     void printGoals();
 
@@ -29,7 +29,7 @@ private:
     std::vector<Line *> lines;
     std::vector<Data *> dataPoints;
 
-    Robot *robot1;
+    Robot *robot1, *robot2, *robot3;
 
     std::unordered_map<Goal *, std::vector<Robot *>> _assignment; // Robot to goal assignment table. Each goal has all of the robots assigned to it, and we use the predicted time to determine which robot is the best fit for the goal.
 };

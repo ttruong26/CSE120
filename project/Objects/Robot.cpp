@@ -9,7 +9,7 @@ Robot::Robot()
 Robot::Robot(int x, int y, int id, double speed)
 {
     robotId = id;
-    avgSpeed = speed;
+    _avgSpeed = speed;
     this->setPosition(x, y);
 }
 
@@ -73,7 +73,7 @@ double Robot::predictTimeEstimation(Goal *goal)
         if (current->getX() == end->getX() && current->getY() == end->getY())
         {
             std::cout << "Path Distance: " << current->g << "\n";
-            return current->g / avgSpeed; // Return time to reach goal
+            return current->g / _avgSpeed; // Return time to reach goal
         }
 
         // Check if node is already visited or in an obstacle
@@ -173,11 +173,4 @@ double Robot::reconstructPath(Tile *end)
         current = current->parent;
     }
     return pathLength;
-}
-
-bool Robot::avoidPath(Tile *tile)
-{
-    if (tile->isWall() == true)
-        return true;
-    return false;
 }
