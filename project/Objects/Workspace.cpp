@@ -21,8 +21,8 @@ void Workspace::printGoals()
         goals[i]->print();
     }
 
-    double time = robot1->predictTimeEstimation(goals[0]);
-    std::cout << "Time: " << time << std::endl;
+    double distance = robot1->predictTimeEstimation(goals[0]);
+    std::cout << "Distance: " << distance << std::endl;
 }
 
 void Workspace::placeLoadedObstacles()
@@ -42,7 +42,7 @@ void Workspace::placeLoadedObstacles()
         mGraph->placeObject(dataPoints[i]);
     }
 
-    // mGraph->getTileAt(-15840, -11900)->getObject()->print();
+    mGraph->getTileAt(-15840, -11900)->getObject()->print();
     /*
     if (graph->getTileAt(-15840, -11900)->isWall() == true)
     {
@@ -106,23 +106,23 @@ void Workspace::placeLoadedGoals()
 
 void Workspace::updateTable()
 {
-    
-    // // Iterate through each goal in the map
-    // for (auto &pair : goalRobotMap)
-    // {
-    //     Goal *goal = pair.first;
-    //     std::vector<Robot *> &robots = pair.second;
+    /*
+    // Iterate through each goal in the map
+    for (auto &pair : goalRobotMap)
+    {
+        Goal *goal = pair.first;
+        std::vector<Robot *> &robots = pair.second;
 
-    //     // Calculate distance of each robot from the goal
-    //     std::sort(robots.begin(), robots.end(), [goal](Robot *a, Robot *b)
-    //     {
-    //         return a->predictTimeEstimation(goal) < b->predictTimeEstimation(goal);
-    //         //  from robot to destination.
-    //     });
-    // }
+        // Calculate distance of each robot from the goal
+        std::sort(robots.begin(), robots.end(), [goal](Robot *a, Robot *b)
+                  {
+                      return a->preditctTimeEstimation(goal) < b->preditctTimeEstimation(goal);
+                      //  from robot to destination.
+                  });
+    }
 
-    // std::cout << "Table updated." << std::endl;
-    
+    std::cout << "Table updated." << std::endl;
+    */
 }
 
 void Workspace::addRobotToGoal(Goal *goal, Robot *robot)
