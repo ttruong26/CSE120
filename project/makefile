@@ -1,5 +1,5 @@
 CC=g++
-CFLAGS=-std=c++11
+CFLAGS=-std=c++14
 # Define your source files here
 SRCS=test.cpp graph/TileGraph.cpp graph/Tile.cpp Objects/Robot.cpp Objects/Goal.cpp Objects/Line.cpp Objects/Data.cpp Objects/Workspace.cpp static/MapLoader.cpp Objects/MapObject.cpp
 # Define your header files dependencies if needed for clarity or specific rules

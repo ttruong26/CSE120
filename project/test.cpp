@@ -8,7 +8,7 @@
 int main()
 {
 
-    TileGraph tg(10, 10, -10, -10);
+    TileGraph tg(11, 11, -10, -10);
     tg.printGraph();
     Tile *tile = tg.getTileAt(0, 0);
     tile->Print();

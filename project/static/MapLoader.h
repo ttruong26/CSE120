@@ -12,11 +12,18 @@
 #include <string>
 #include <vector>
 #include <limits>
+#include <memory>
 
 class MapLoader
 {
 public:
-    static void LoadMap(TileGraph &graph, std::vector<Goal *> &goals, std::vector<Line *> &lines, std::vector<Data *> &points, std::string fileName);
+    static void LoadMap(TileGraph &graph, std::vector<std::unique_ptr<Goal>> &goals, std::vector<std::unique_ptr<Line>> &lines, std::vector<std::unique_ptr<Data>> &dataPoints, std::string fileName);
+
+    static void LoadWorkspace(const std::string &fileName, TileGraph &graph, std::vector<Goal *> &goals, std::vector<Line *> &lines, std::vector<Data *> &points);
 
 private:
+    static void loadBoundaries(std::ifstream &mapFile, TileGraph &graph);
+    static void loadGoals(std::ifstream &mapFile, std::vector<Goal *> &goals);
+    static void loadLines(std::ifstream &mapFile, std::vector<Line *> &lines);
+    static void loadDataPoints(std::ifstream &mapFile, std::vector<Data *> &points);
 };

@@ -7,33 +7,50 @@ Workspace::Workspace()
 
 void Workspace::loadData()
 {
-    MapLoader::LoadMap(*mGraph, goals, lines, dataPoints, "mapfiles/test.map");
+    MapLoader::LoadMap(*mGraph, _goals, _lines, _dataPoints, "mapfiles/test.map");
     MapObject::_graph = mGraph;
+    mGraph->print();
+    for (int i = 0; i < _goals.size(); i++)
+    {
+        _goals[i]->print();
+    }
+
     this->placeLoadedGoals();
     this->placeLoadedObstacles();
 
     // Create robots
-    robot1 = new Robot(-26099, -19959, 0, 1200);
+    robot1 = new Robot(-26100, -19959, 0, 1200);
     mGraph->placeObject(robot1);
-    robot2 = new Robot(-26099, -4859, 0, 1200);
+    robot2 = new Robot(-26099, -4861, 0, 1200);
     mGraph->placeObject(robot2);
+    this->createAssignmentMap();
+}
 
-    std::vector<Robot *> robots;
-    robots.push_back(robot1);
-    robots.push_back(robot2);
-    for (int i = 0; i < goals.size(); i++)
+void Workspace::createAssignmentMap()
+{
+    for (int i = 0; i < _goals.size(); i++)
     {
-        _assignment[goals[i]] = robots;
+        _assignment[_goals[i].get()] = std::vector<Robot *>();
+    }
+
+    // Assign robots to goals
+    for (int i = 0; i < _goals.size(); i++)
+    {
+        _assignment[_goals[i].get()].push_back(robot1);
+        _assignment[_goals[i].get()].push_back(robot2);
     }
 }
 
 void Workspace::printGoals()
 {
-    mGraph->print();
+    for (int i = 0; i < _goals.size(); i++)
+    {
+        _goals[i]->print();
+    }
 
-    double distance = robot1->predictTimeEstimation(goals[0]);
+    double distance = robot1->predictTimeEstimation(_goals[0]);
     std::cout << "Time Prediction: " << distance << std::endl;
-    double distance2 = robot2->predictTimeEstimation(goals[0]);
+    double distance2 = robot2->predictTimeEstimation(_goals[0]);
     std::cout << "Time Prediction: " << distance2 << std::endl;
 
     for (auto &pair : _assignment)
@@ -52,18 +69,18 @@ void Workspace::printGoals()
 void Workspace::placeLoadedObstacles()
 {
 
-    for (int i = 0; i < lines.size(); i++)
+    for (int i = 0; i < _lines.size(); i++)
     {
         if (i == 17) // The 17th line is out of bounds of the workspace
         {
             continue;
         }
-        mGraph->placeObject(lines[i]);
+        mGraph->placeObject(_lines[i].get());
     }
 
-    for (int i = 0; i < dataPoints.size(); i++)
+    for (int i = 0; i < _dataPoints.size(); i++)
     {
-        mGraph->placeObject(dataPoints[i]);
+        mGraph->placeObject(_dataPoints[i].get());
     }
 
     // mGraph->getTileAt(-15840, -11900)->getObject()->print();
@@ -104,10 +121,10 @@ void Workspace::placeLoadedObstacles()
 
 void Workspace::placeLoadedGoals()
 {
-    for (int i = 0; i < goals.size(); i++)
+    for (int i = 0; i < _goals.size(); i++)
 
     {
-        mGraph->placeObject(goals[i]);
+        mGraph->placeObject(_goals[i].get());
     }
 
     /*

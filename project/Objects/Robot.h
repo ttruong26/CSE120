@@ -36,10 +36,12 @@ public:
     bool isFree() { return _isFree; }
     void executeTask(Goal *goal);
 
-    double predictTimeEstimation(Goal *goal); // Find the distance between the robot and the goal
-    double updateTimeEstimation();
-    Goal *getCurrentGoal(); // If the robot is working, then return the goal robot is working on
+    //  Returns a time estimation for the robot to reach the goal.
+    // Uses A* algorithm to calculate the shortest path distance.
+    // Time is found by dividing the distance by the robot's average speed.
+    double predictTimeEstimation(std::unique_ptr<Goal> &goal);
 
+    Goal *getCurrentGoal(); // If the robot is working, then return the goal robot is working on.
     Type getType() const override { return Type::Robot; }
 
     void print() override
