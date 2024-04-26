@@ -9,7 +9,7 @@ Robot::Robot()
 Robot::Robot(int x, int y, int id, double speed)
 {
     robotId = id;
-    avgSpeed = speed;
+    _avgSpeed = speed;
     this->setPosition(x, y);
 }
 
@@ -21,7 +21,9 @@ void Robot::setPosition(Tile *tile)
 void Robot::setPosition(int x, int y)
 {
     _currentTile = new Tile(x, y);
-    _currentTile->setObject(this);
+
+    std::shared_ptr<Robot> shared(this);
+    _currentTile->setObject(shared);
 }
 
 void Robot::executeTask(Goal *goal)
@@ -33,26 +35,15 @@ Goal *Robot::getCurrentGoal()
     return currentGoal;
 }
 
-double Robot::preditctTimeEstimation(Goal *goal)
+double Robot::predictTimeEstimation(std::shared_ptr<Goal> &goal)
 {
     Tile *start = this->_currentTile;
     Tile *end = goal->getCurrentPosition();
-
-    /*
-    std::priority_queue<Tile *, std::vector<Tile *>, CompareTile> openSet; // This requires a comparator to sort by f cost
-    std::unordered_set<Tile *> closedSet;
-    std::unordered_set<Tile *> openSetItems;
-    */
 
     start->g = 0;
     start->h = start->calculateHeuristic(end);
     start->f = start->g + start->h;
     start->parent = nullptr;
-
-    /*
-    openSet.push(start);
-    openSetItems.insert(start);
-    */
 
     // Initialize priority queue and visited array
     std::priority_queue<Tile *, std::vector<Tile *>, CompareTile> openSet;
@@ -65,6 +56,7 @@ double Robot::preditctTimeEstimation(Goal *goal)
     // A* search loop
     while (!openSet.empty())
     {
+        // std::cout << "In" << std::endl; // gets to here
         Tile *current = openSet.top();
         openSet.pop();
 
@@ -72,7 +64,7 @@ double Robot::preditctTimeEstimation(Goal *goal)
         if (current->getX() == end->getX() && current->getY() == end->getY())
         {
             std::cout << "Path Distance: " << current->g << "\n";
-            return current->g / avgSpeed; // Return time to reach goal
+            return current->g / _avgSpeed; // Return time to reach goal
         }
 
         // Check if node is already visited or in an obstacle
@@ -172,11 +164,4 @@ double Robot::reconstructPath(Tile *end)
         current = current->parent;
     }
     return pathLength;
-}
-
-bool Robot::avoidPath(Tile *tile)
-{
-    if (tile->isWall() == true)
-        return true;
-    return false;
 }

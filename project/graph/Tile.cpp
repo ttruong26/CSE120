@@ -40,14 +40,14 @@ void Tile::setPosition(int x, int y)
     coordinates._y = y;
 }
 
-void Tile::setObject(MapObject *object)
+void Tile::setObject(std::shared_ptr<MapObject> object)
 {
     _object = object;
 }
 
 MapObject *Tile::getObject()
 {
-    return _object;
+    return _object.get();
 }
 
 Point Tile::getPosition()

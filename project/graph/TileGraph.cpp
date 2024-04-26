@@ -44,20 +44,24 @@ void TileGraph::setBounds(int w, int h, int originX, int originY)
 
 Tile *TileGraph::getTileAt(int x, int y)
 {
-    if (x < _origin._x || x > _width + _origin._x || y < _origin._y || y > _height + _origin._y)
-    {
-        /*
-        std::cout << "Cannot Access Tile out of bounds"
-                  << " (" << x << " " << y << ")" << std::endl;
-                  */
-        return NULL;
-    }
 
-    else
+    try
     {
-        int indexX = x - _origin._x;
-        int indexY = y - _origin._y;
-        return tiles[indexY][indexX];
+        if (x < _origin._x || x > _width + _origin._x || y < _origin._y || y > _height + _origin._y)
+        {
+            throw std::out_of_range("Cannot Access Tile out of bounds");
+        }
+        else
+        {
+            int indexX = x - _origin._x;
+            int indexY = y - _origin._y;
+            return tiles[indexY][indexX];
+        }
+    }
+    catch (const std::out_of_range &e)
+    {
+        // std::cerr << e.what() << " (" << x << " " << y << ")" << std::endl;
+        return NULL;
     }
 }
 
