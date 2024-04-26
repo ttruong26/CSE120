@@ -3,7 +3,7 @@
 ## Project Folder
 Contains class design that represents the Robot Workspace. Workspace contains Robots, and Goals they need to work on. Cartesian Plane used to hold positions of objects on workspace. 
 
-## Build Executable using CMake
+### Build Executable using CMake
 Ensure that g++ compiler, CMake, and Make are installed
 Once in the project folder, Navigate to the build folder and run 
 ```
