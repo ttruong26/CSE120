@@ -1,3 +1,3 @@
 #include "MapObject.h"
 
-TileGraph *MapObject::_graph = nullptr;
+TileGraph *MapObject::_mGraph = nullptr;

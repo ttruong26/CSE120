@@ -12,7 +12,7 @@ class Tile;
 class MapObject
 {
 public:
-    static TileGraph *_graph; // Pointer to the graph that holds all the mapObjects. So we can access the graph from anywhere.
+    static TileGraph *_mGraph; // Pointer to the graph that holds all the mapObjects. So we can access the graph from anywhere.
     enum class Type
     {
         Robot,

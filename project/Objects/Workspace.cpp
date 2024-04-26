@@ -9,7 +9,7 @@ void Workspace::loadData()
 {
     // Load tile Graph
     MapLoader::LoadMap(*mGraph, _goals, _lines, _dataPoints, "mapfiles/test.map");
-    MapObject::_graph = mGraph;
+    MapObject::_mGraph = mGraph;
     mGraph->print();
     for (int i = 0; i < _goals.size(); i++)
     {
@@ -20,9 +20,9 @@ void Workspace::loadData()
     this->placeLoadedObstacles();
 
     // Create and place robots
-    robot1 = new Robot(-26100, -19959, 0, 1200);
+    robot1 = new Robot(-26100, -19959, 1, 1200);
     mGraph->placeObject(robot1);
-    robot2 = new Robot(-26099, -4861, 0, 1200);
+    robot2 = new Robot(-26099, -4861, 2, 1200);
     mGraph->placeObject(robot2);
 
     // Once robots are and goals are loaded and placed on graph, we can create the assignment map
@@ -51,20 +51,23 @@ void Workspace::printGoals()
         _goals[i]->print();
     }
 
+    // Test the predictTimeEstimation function for both Robots
     double distance = robot1->predictTimeEstimation(_goals[0]);
     std::cout << "Time Prediction: " << distance << std::endl;
     double distance2 = robot2->predictTimeEstimation(_goals[0]);
     std::cout << "Time Prediction: " << distance2 << std::endl;
 
+    // Print the assignment table
     for (auto &pair : _assignment)
     {
         Goal *goal = pair.first;
         std::vector<Robot *> &robots = pair.second;
+        goal->print();
 
         for (int i = 0; i < robots.size(); i++)
         {
-            std::cout << "Robot " << i << " assigned to goal: ";
-            goal->print();
+            std::cout << "Robot " << i + 1 << ": ";
+            robots[i]->print();
         }
     }
 }

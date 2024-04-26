@@ -47,8 +47,8 @@ double Robot::predictTimeEstimation(std::shared_ptr<Goal> &goal)
 
     // Initialize priority queue and visited array
     std::priority_queue<Tile *, std::vector<Tile *>, CompareTile> openSet;
-    std::vector<std::vector<bool>> visited(_graph->getWidth(), std::vector<bool>(_graph->getHeight(), false));
-    _graph->print();
+    std::vector<std::vector<bool>> visited(_mGraph->getWidth(), std::vector<bool>(_mGraph->getHeight(), false));
+    _mGraph->print();
 
     // Push the starting node onto the open set
     openSet.push(start);
@@ -68,13 +68,13 @@ double Robot::predictTimeEstimation(std::shared_ptr<Goal> &goal)
         }
 
         // Check if node is already visited or in an obstacle
-        if (visited[_graph->getXIndex(current)][_graph->getYIndex(current)] || current->isWall())
+        if (visited[_mGraph->getXIndex(current)][_mGraph->getYIndex(current)] || current->isWall())
         {
             continue; // Skip this node
         }
 
         // Mark node as visited
-        visited[_graph->getXIndex(current)][_graph->getYIndex(current)] = true;
+        visited[_mGraph->getXIndex(current)][_mGraph->getYIndex(current)] = true;
 
         // Iterate over neighbor nodes
         for (int dx = -1; dx <= 1; ++dx)
@@ -86,10 +86,10 @@ double Robot::predictTimeEstimation(std::shared_ptr<Goal> &goal)
 
                 int nextX = current->getX() + dx;
                 int nextY = current->getY() + dy;
-                Tile *next = _graph->getTileAt(nextX, nextY);
+                Tile *next = _mGraph->getTileAt(nextX, nextY);
 
                 // Check if neighbor node is within grid bounds
-                if (!next || _graph->getXIndex(next) < 0 || _graph->getXIndex(next) >= _graph->getWidth() || _graph->getYIndex(next) < 0 || _graph->getYIndex(next) >= _graph->getHeight())
+                if (!next || _mGraph->getXIndex(next) < 0 || _mGraph->getXIndex(next) >= _mGraph->getWidth() || _mGraph->getYIndex(next) < 0 || _mGraph->getYIndex(next) >= _mGraph->getHeight())
                 {
                     continue;
                 }
@@ -98,7 +98,7 @@ double Robot::predictTimeEstimation(std::shared_ptr<Goal> &goal)
                 double newCost = current->g + current->calculateHeuristic(next);
 
                 // Check if neighbor node is not visited and not in an obstacle
-                if (!visited[_graph->getXIndex(next)][_graph->getYIndex(next)] && !next->isWall())
+                if (!visited[_mGraph->getXIndex(next)][_mGraph->getYIndex(next)] && !next->isWall())
                 {
                     // Calculate heuristic cost (distance to goal)
                     next->h = next->calculateHeuristic(end);

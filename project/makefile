@@ -8,3 +8,5 @@ DEPS=graph/TileGraph.h graph/Tile.h Objects/Robot.h Objects/Goal.h Objects/Line.
 # Target to build the executable
 test.exe: $(SRCS) $(DEPS)
 	$(CC) $(CFLAGS) -o $@ $(SRCS)
+
+g

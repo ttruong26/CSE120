@@ -11,10 +11,11 @@ class Goal : public MapObject
 {
 public:
     Goal();
+    Goal(int x, int y);
     Goal(int x, int y, double heading, std::string id);
 
     Type getType() const override { return Type::Goal; } // Determine whether the MapObject is a Goal.
-    void setPosition(int x, int y);
+    void setPosition(int x, int y);                      // Set the position of the Goal.
 
     bool isWorking() { return _isActive; } // Ensure robot multiple robots don't work on the same goal.
 
