@@ -13,4 +13,6 @@ Data::Data(int x, int y)
 void Data::setPosition(int x, int y)
 {
     _currentTile->setPosition(x, y);
+    std::shared_ptr<Data> shared(this);
+    _currentTile->setObject(shared);
 }

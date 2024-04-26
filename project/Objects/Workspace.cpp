@@ -7,6 +7,7 @@ Workspace::Workspace()
 
 void Workspace::loadData()
 {
+    // Load tile Graph
     MapLoader::LoadMap(*mGraph, _goals, _lines, _dataPoints, "mapfiles/test.map");
     MapObject::_graph = mGraph;
     mGraph->print();
@@ -18,11 +19,13 @@ void Workspace::loadData()
     this->placeLoadedGoals();
     this->placeLoadedObstacles();
 
-    // Create robots
+    // Create and place robots
     robot1 = new Robot(-26100, -19959, 0, 1200);
     mGraph->placeObject(robot1);
     robot2 = new Robot(-26099, -4861, 0, 1200);
     mGraph->placeObject(robot2);
+
+    // Once robots are and goals are loaded and placed on graph, we can create the assignment map
     this->createAssignmentMap();
 }
 
@@ -33,7 +36,7 @@ void Workspace::createAssignmentMap()
         _assignment[_goals[i].get()] = std::vector<Robot *>();
     }
 
-    // Assign robots to goals
+    // We will assign every robot to every goal, to find the predicted time for each robot and find the best fit
     for (int i = 0; i < _goals.size(); i++)
     {
         _assignment[_goals[i].get()].push_back(robot1);
@@ -143,6 +146,13 @@ void Workspace::placeLoadedGoals()
         std::cout << "Goal not placed at (-23540, -6325)";
     }
     */
+}
+
+void Workspace::cleanUp()
+{
+    delete mGraph;
+    delete robot1;
+    delete robot2;
 }
 
 void Workspace::updateTable()

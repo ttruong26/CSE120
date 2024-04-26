@@ -4,7 +4,7 @@
 #include "../Objects/Goal.h"
 #include "../Objects/Line.h"
 #include "../Objects/Data.h"
-#include "../Utility.h"
+#include "../include/Utility.h"
 
 #include <fstream>
 #include <iostream>
@@ -17,7 +17,7 @@
 class MapLoader
 {
 public:
-    static void LoadMap(TileGraph &graph, std::vector<std::unique_ptr<Goal>> &goals, std::vector<std::unique_ptr<Line>> &lines, std::vector<std::unique_ptr<Data>> &dataPoints, std::string fileName);
+    static void LoadMap(TileGraph &graph, std::vector<std::shared_ptr<Goal>> &goals, std::vector<std::shared_ptr<Line>> &lines, std::vector<std::shared_ptr<Data>> &dataPoints, std::string fileName);
 
     static void LoadWorkspace(const std::string &fileName, TileGraph &graph, std::vector<Goal *> &goals, std::vector<Line *> &lines, std::vector<Data *> &points);
 

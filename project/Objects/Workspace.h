@@ -12,6 +12,7 @@ class Workspace
 public:
     Workspace();
     void loadData();
+    void cleanUp();
 
     void printGoals();
 
@@ -23,9 +24,9 @@ public:
 
 private:
     TileGraph *mGraph;                         // Graph to store coordinates for mapObjects
-    std::vector<std::unique_ptr<Goal>> _goals; // Holds all of the goals on the workspace, loaded from the map file. Goals have predetermined position coordinates.
-    std::vector<std::unique_ptr<Line>> _lines;
-    std::vector<std::unique_ptr<Data>> _dataPoints;
+    std::vector<std::shared_ptr<Goal>> _goals; // Holds all of the goals on the workspace, loaded from the map file. Goals have predetermined position coordinates.
+    std::vector<std::shared_ptr<Line>> _lines;
+    std::vector<std::shared_ptr<Data>> _dataPoints;
     std::vector<Robot *> _robots;
 
     Robot *robot1, *robot2, *robot3;

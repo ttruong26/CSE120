@@ -2,7 +2,7 @@
 
 using namespace std;
 
-void MapLoader::LoadMap(TileGraph &graph, std::vector<std::unique_ptr<Goal>> &goals, std::vector<std::unique_ptr<Line>> &lines, std::vector<std::unique_ptr<Data>> &dataPoints, std::string fileName)
+void MapLoader::LoadMap(TileGraph &graph, std::vector<std::shared_ptr<Goal>> &goals, std::vector<std::shared_ptr<Line>> &lines, std::vector<std::shared_ptr<Data>> &dataPoints, std::string fileName)
 {
     vector<Point> boundCoordinates;
 
@@ -53,7 +53,7 @@ void MapLoader::LoadMap(TileGraph &graph, std::vector<std::unique_ptr<Goal>> &go
                     iss.ignore(std::numeric_limits<std::streamsize>::max(), '\"'); // Skip to the start of the ID (start quote)
                     std::getline(iss, id, '\"');                                   // Read the ID (up to the end quote)
                     // goal = new Goal(_x, _y, heading, id);
-                    goals.push_back(make_unique<Goal>(_x, _y, heading, id));
+                    goals.push_back(make_shared<Goal>(_x, _y, heading, id));
                     // goals.push_back(goal);
                 }
             }
@@ -85,7 +85,7 @@ void MapLoader::LoadMap(TileGraph &graph, std::vector<std::unique_ptr<Goal>> &go
             if (iss >> x1 >> y1 >> x2 >> y2)
             {
                 // l->setEndPoints(x1, y1, x2, y2);
-                lines.push_back(make_unique<Line>(x1, y1, x2, y2));
+                lines.push_back(make_shared<Line>(x1, y1, x2, y2));
                 // lines.push_back(l);
             }
             else
@@ -109,7 +109,7 @@ void MapLoader::LoadMap(TileGraph &graph, std::vector<std::unique_ptr<Goal>> &go
             {
                 // d->setPosition(x, y);
                 // points.push_back(d);
-                dataPoints.push_back(make_unique<Data>(x, y));
+                dataPoints.push_back(make_shared<Data>(x, y));
             }
             else
             {

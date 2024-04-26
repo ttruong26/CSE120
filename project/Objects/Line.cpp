@@ -36,8 +36,10 @@ void Line::setEndPoints(int x1, int y1, int x2, int y2)
     // Create tileObjects from the input coordinates, and set the tile object to a Wall/Line
     _currentTile = new Tile(x1, y1);
     _endPoint = new Tile(x2, y2);
-    _currentTile->setObject(this);
-    _endPoint->setObject(this);
+
+    std::shared_ptr<Line> shared(this);
+    _currentTile->setObject(shared);
+    _endPoint->setObject(shared);
 
     // Given the two endpoints, draw a line segment to connect the two points
     this->drawLine();
@@ -74,14 +76,16 @@ void Line::drawLine()
         {
             // Modify the tile at (y, x) to represent the line
             tempTile->setPosition(y, x);
-            tempTile->setObject(this);
+            std::shared_ptr<Line> shared(this);
+            tempTile->setObject(shared);
             _tiles.push_back(tempTile);
         }
         else
         {
             // Modify the tile at (x, y) to represent the line
             tempTile->setPosition(x, y);
-            tempTile->setObject(this);
+            std::shared_ptr<Line> shared(this);
+            tempTile->setObject(shared);
             _tiles.push_back(tempTile);
         }
 

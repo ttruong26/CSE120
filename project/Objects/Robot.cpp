@@ -21,7 +21,9 @@ void Robot::setPosition(Tile *tile)
 void Robot::setPosition(int x, int y)
 {
     _currentTile = new Tile(x, y);
-    _currentTile->setObject(this);
+
+    std::shared_ptr<Robot> shared(this);
+    _currentTile->setObject(shared);
 }
 
 void Robot::executeTask(Goal *goal)
@@ -33,7 +35,7 @@ Goal *Robot::getCurrentGoal()
     return currentGoal;
 }
 
-double Robot::predictTimeEstimation(std::unique_ptr<Goal> &goal)
+double Robot::predictTimeEstimation(std::shared_ptr<Goal> &goal)
 {
     Tile *start = this->_currentTile;
     Tile *end = goal->getCurrentPosition();
@@ -109,6 +111,45 @@ double Robot::predictTimeEstimation(std::unique_ptr<Goal> &goal)
             }
         }
     }
+
+    /*
+    while (!openSet.empty())
+    {
+        std::cout << "Robot is finding path\n";
+        Tile *current = openSet.top();
+        openSet.pop();
+        openSetItems.erase(current);
+
+        // your existing logic
+        if (current->getX() == end->getX() && current->getY() == end->getY())
+        {
+            return reconstructPath(current); // Function to calculate the path length
+        }
+
+        closedSet.insert(current);
+
+        auto neighbors = _graph->getNeighbors(current); // Get neighbors of the current tile
+        for (Tile *neighbor : neighbors)
+        {
+            if (!neighbor || closedSet.find(neighbor) != closedSet.end() || neighbor->isWall()) // Make sure the neighbor is not out of bounds, not already visited, and not a wall
+                continue;
+
+            double tentative_gScore = current->g + current->cost(neighbor);
+            if (tentative_gScore < neighbor->g)
+            {
+                neighbor->parent = current;
+                neighbor->g = tentative_gScore;
+                neighbor->h = neighbor->calculateHeuristic(end);
+                neighbor->f = neighbor->g + neighbor->h;
+                if (openSetItems.find(neighbor) == openSetItems.end())
+                {
+                    openSet.push(neighbor);
+                    openSetItems.insert(neighbor);
+                }
+            }
+        }
+    }
+    */
 
     return -1; // If no path is found
 }

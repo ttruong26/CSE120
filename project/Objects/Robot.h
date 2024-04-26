@@ -39,7 +39,7 @@ public:
     //  Returns a time estimation for the robot to reach the goal.
     // Uses A* algorithm to calculate the shortest path distance.
     // Time is found by dividing the distance by the robot's average speed.
-    double predictTimeEstimation(std::unique_ptr<Goal> &goal);
+    double predictTimeEstimation(std::shared_ptr<Goal> &goal);
 
     Goal *getCurrentGoal(); // If the robot is working, then return the goal robot is working on.
     Type getType() const override { return Type::Robot; }
@@ -60,6 +60,5 @@ private:
 
     std::unordered_map<Goal *, RobotData> _previousRuns;
 
-    double
-    reconstructPath(Tile *end);
+    double reconstructPath(Tile *end);
 };

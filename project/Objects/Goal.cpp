@@ -14,7 +14,9 @@ Goal::Goal(int x, int y, double heading, std::string id)
 
     // Set the tile with input coordinates
     _currentTile->setPosition(x, y);
-    _currentTile->setObject(this);
+
+    std::shared_ptr<Goal> shared(this);
+    _currentTile->setObject(shared);
 }
 
 void Goal::setPosition(int x, int y)

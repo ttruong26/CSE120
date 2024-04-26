@@ -2,7 +2,7 @@
 #define TILE_H
 
 #include <iostream>
-#include "../Utility.h"
+#include "../include/Utility.h"
 #include "../Objects/MapObject.h"
 
 class Tile
@@ -17,7 +17,7 @@ public:
     int getX();
     int getY();
 
-    void setObject(MapObject *object);
+    void setObject(std::shared_ptr<MapObject> object);
     MapObject *getObject();
 
     // To check what type of mapObject is placed on the tile
@@ -34,14 +34,6 @@ public:
     double calculateHeuristic(Tile *target);
     double cost(Tile *target);
 
-    /*
-    // Function to calculate distance between two points
-    double calculateHeuristic(const Point &target)
-    {
-        return sqrt(pow((target._x - this->coordinates._x) * 100, 2) + pow((target._y - this->coordinates._x) * 100, 2)); // Convert back to millimeters for accurate distance calculation
-    }
-    */
-
     void resetPathFindingInfo();
 
     void Print()
@@ -53,7 +45,7 @@ private:
     Point coordinates;
 
     // Tile can either hold a robot, goal or wall element
-    MapObject *_object;
+    std::shared_ptr<MapObject> _object;
 };
 
 #endif
