@@ -19,6 +19,7 @@ public:
 
     bool isWorking() { return _isActive; } // Ensure robot multiple robots don't work on the same goal.
 
+    std::string getGoalId() { return _goalId; } // Get the ID of the Goal.
     void print() override
     {
         std::cout << "Goal ID: " << _goalId << ", Position: (" << _currentTile->getPosition()._x << ", " << _currentTile->getPosition()._y << "), "

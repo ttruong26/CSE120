@@ -29,3 +29,5 @@ add_executable(test ${SOURCE_FILES})
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/mapfiles/ 
     DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/mapfiles/)
 
+
+    

@@ -26,13 +26,13 @@ void MapLoader::LoadMap(TileGraph &graph, std::vector<std::shared_ptr<Goal>> &go
         if (label == "MinPos:")
         {
             iss >> x >> y;
-            Point p(x, y);
+            Point p(x / 10, y / 10);
             boundCoordinates.push_back(p);
         }
         else if (label == "MaxPos:")
         {
             iss >> x >> y;
-            Point p(x, y);
+            Point p(x / 10, y / 10);
             boundCoordinates.push_back(p);
         }
 
@@ -53,7 +53,7 @@ void MapLoader::LoadMap(TileGraph &graph, std::vector<std::shared_ptr<Goal>> &go
                     iss.ignore(std::numeric_limits<std::streamsize>::max(), '\"'); // Skip to the start of the ID (start quote)
                     std::getline(iss, id, '\"');                                   // Read the ID (up to the end quote)
                     // goal = new Goal(_x, _y, heading, id);
-                    goals.push_back(make_shared<Goal>(_x, _y, heading, id));
+                    goals.push_back(make_shared<Goal>(_x / 10, _y / 10, heading, id));
                     // goals.push_back(goal);
                 }
             }
@@ -85,7 +85,7 @@ void MapLoader::LoadMap(TileGraph &graph, std::vector<std::shared_ptr<Goal>> &go
             if (iss >> x1 >> y1 >> x2 >> y2)
             {
                 // l->setEndPoints(x1, y1, x2, y2);
-                lines.push_back(make_shared<Line>(x1, y1, x2, y2));
+                lines.push_back(make_shared<Line>(x1 / 10, y1 / 10, x2 / 10, y2 / 10));
                 // lines.push_back(l);
             }
             else
@@ -109,7 +109,7 @@ void MapLoader::LoadMap(TileGraph &graph, std::vector<std::shared_ptr<Goal>> &go
             {
                 // d->setPosition(x, y);
                 // points.push_back(d);
-                dataPoints.push_back(make_shared<Data>(x, y));
+                dataPoints.push_back(make_shared<Data>(x / 10, y / 10));
             }
             else
             {

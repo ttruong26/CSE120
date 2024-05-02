@@ -11,36 +11,37 @@ void Workspace::loadData()
     MapLoader::LoadMap(*mGraph, _goals, _lines, _dataPoints, "mapfiles/test.map");
     MapObject::_mGraph = mGraph;
     mGraph->print();
-    for (int i = 0; i < _goals.size(); i++)
-    {
-        _goals[i]->print();
-    }
+    std::cout << std::endl;
 
     this->placeLoadedGoals();
     this->placeLoadedObstacles();
-
-    // Create and place robots
-    robot1 = new Robot(-26100, -19959, 1, 1200);
-    mGraph->placeObject(robot1);
-    robot2 = new Robot(-26099, -4861, 2, 1200);
-    mGraph->placeObject(robot2);
+    this->createRobots();
 
     // Once robots are and goals are loaded and placed on graph, we can create the assignment map
     this->createAssignmentMap();
+}
+
+void Workspace::createRobots()
+{
+    // Create robots. For now, we will create two robots.
+    robot1 = new Robot(-2610, -1995, 1, 120);
+    mGraph->placeObject(robot1);
+    robot2 = new Robot(-2609, -486, 2, 120);
+    mGraph->placeObject(robot2);
 }
 
 void Workspace::createAssignmentMap()
 {
     for (int i = 0; i < _goals.size(); i++)
     {
-        _assignment[_goals[i].get()] = std::vector<Robot *>();
+        _assignment[_goals[i]] = std::vector<Robot *>();
     }
 
     // We will assign every robot to every goal, to find the predicted time for each robot and find the best fit
     for (int i = 0; i < _goals.size(); i++)
     {
-        _assignment[_goals[i].get()].push_back(robot1);
-        _assignment[_goals[i].get()].push_back(robot2);
+        _assignment[_goals[i]].push_back(robot1);
+        _assignment[_goals[i]].push_back(robot2);
     }
 }
 
@@ -51,24 +52,30 @@ void Workspace::printGoals()
         _goals[i]->print();
     }
 
+    /*
     // Test the predictTimeEstimation function for both Robots
     double distance = robot1->predictTimeEstimation(_goals[0]);
     std::cout << "Time Prediction: " << distance << std::endl;
     double distance2 = robot2->predictTimeEstimation(_goals[0]);
     std::cout << "Time Prediction: " << distance2 << std::endl;
+    */
+}
 
+void Workspace::printAssignmentTable()
+{
     // Print the assignment table
     for (auto &pair : _assignment)
     {
-        Goal *goal = pair.first;
+        std::shared_ptr<Goal> goal = pair.first;
         std::vector<Robot *> &robots = pair.second;
-        goal->print();
+        std::cout << goal->getGoalId() << " | ";
 
         for (int i = 0; i < robots.size(); i++)
         {
-            std::cout << "Robot " << i + 1 << ": ";
             robots[i]->print();
+            std::cout << ", ";
         }
+        std::cout << "|" << std::endl;
     }
 }
 
@@ -113,15 +120,6 @@ void Workspace::placeLoadedObstacles()
     {
         std::cout << "Wall not placed at (-25582, -12574)";
     }
-
-    if (graph->getTileAt(-25582, -12575)->isWall() == true)
-    {
-        std::cout << "Wall placed at (-25582, -12575)";
-    }
-    else
-    {
-        std::cout << "Wall not placed at ( -25582, -12575)";
-    }
     */
 }
 
@@ -160,25 +158,34 @@ void Workspace::cleanUp()
 
 void Workspace::updateTable()
 {
-    /*
+
     // Iterate through each goal in the map
     for (auto &pair : _assignment)
     {
-        Goal *goal = pair.first;
+        std::shared_ptr<Goal> goal = pair.first;
         std::vector<Robot *> &robots = pair.second;
+        std::cout << std::endl;
 
         // Calculate distance of each robot from the goal
         std::sort(robots.begin(), robots.end(), [goal](Robot *a, Robot *b)
                   {
-                      return a->preditctTimeEstimation(goal) < b->preditctTimeEstimation(goal);
+                      return a->predictTimeEstimation(goal) < b->predictTimeEstimation(goal);
                       //  from robot to destination.
                   });
+
+        // Assign the robot with the shortest predicted time to the goal
+        // robot[0]->assign(goal);
     }
 
-    std::cout << "Table updated." << std::endl;
-    */
+    std::cout << "Robots assigned to goals." << std::endl;
 }
 
+/*
+    This function will assign robots to goals based on the predicted time to reach the goal.
+    The robot with the shortest predicted time will be assigned to the goal.
+*/
+
+/*
 // We will assume that any robot can work on any goal
 void Workspace::addRobotToGoal(Goal *goal, Robot *robot)
 {
@@ -196,3 +203,4 @@ void Workspace::addRobotToGoal(Goal *goal, Robot *robot)
         _assignment[goal] = robotList;
     }
 }
+*/

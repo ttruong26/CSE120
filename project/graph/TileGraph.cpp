@@ -79,7 +79,7 @@ int TileGraph::getYIndex(Tile *tile)
 void TileGraph::placeTiletoArray(int x, int y, Tile *tile)
 {
 
-    if (x < _origin._x || x >= _width + _origin._x || y < _origin._y || y >= _height + _origin._y)
+    if (x < _origin._x || x > _width + _origin._x || y < _origin._y || y > _height + _origin._y)
     {
         std::cout << "Cannot Place Tile out of bounds"
                   << " (" << x << " " << y << ") " << std::endl;
@@ -138,7 +138,7 @@ void TileGraph::printGraph()
 
 void TileGraph::print()
 {
-    std::cout << "Width: " << _width << " Height: " << _height << " OriginX: " << _origin._x << " OriginY: " << _origin._y << std::endl;
+    std::cout << "Width: " << _width << " Height: " << _height << " OriginX: " << _origin._x << " OriginY: " << _origin._y;
 }
 
 std::array<Tile *, 4> TileGraph::getNeighbors(Tile *tile)
