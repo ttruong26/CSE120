@@ -8,7 +8,7 @@ Workspace::Workspace()
 void Workspace::loadData()
 {
     // Load tile Graph
-    MapLoader::LoadMap(*mGraph, _goals, _lines, _dataPoints, "mapfiles/test.map");
+    MapLoader::LoadMap(*mGraph, _goals, _lines, _dataPoints, "mapfiles/test1.map");
     MapObject::_mGraph = mGraph;
     mGraph->print();
     std::cout << std::endl;

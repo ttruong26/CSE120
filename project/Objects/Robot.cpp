@@ -26,6 +26,15 @@ void Robot::setPosition(int x, int y)
     _currentTile->setObject(shared);
 }
 
+void Robot::moveTo(int x, int y)
+{
+    if (_mGraph->getTileAt(x, y)) // Check if their is an object at the next tile.
+    {
+        this->setPosition(x, y);
+        _mGraph->placeObject(this);
+    }
+}
+
 void Robot::assignTask(std::shared_ptr<Goal> goal)
 {
     currentGoal = goal.get();
@@ -50,7 +59,10 @@ double Robot::predictTimeEstimation(std::shared_ptr<Goal> goal)
     // Initialize priority queue and visited array
     std::priority_queue<Tile *, std::vector<Tile *>, CompareTile> openSet;
     std::vector<std::vector<bool>> visited(_mGraph->getWidth(), std::vector<bool>(_mGraph->getHeight(), false));
-    _mGraph->print();
+    std::cout << "Computing path distance from ";
+    start->Print();
+    std::cout << "to ";
+    end->Print();
     std::cout << std::endl;
 
     // Push the starting node onto the open set
@@ -66,10 +78,7 @@ double Robot::predictTimeEstimation(std::shared_ptr<Goal> goal)
         // Check if goal reached
         if (current->getX() == end->getX() && current->getY() == end->getY())
         {
-            std::cout << "Path Distance from ";
-            start->Print();
-            std::cout << " to ";
-            end->Print();
+            std::cout << "Path Distance:";
             std::cout << ": " << current->g << "\n";
             return current->g / _avgSpeed; // Return time to reach goal
         }

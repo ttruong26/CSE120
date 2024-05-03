@@ -32,6 +32,7 @@ public:
 
     void setPosition(Tile *tile);
     void setPosition(int x, int y);
+    void moveTo(int x, int y);
 
     //  Returns a time estimation for the robot to reach the goal.
     // Uses A* algorithm to calculate the shortest path distance.
@@ -39,6 +40,7 @@ public:
     double predictTimeEstimation(std::shared_ptr<Goal> goal);
 
     int getId() { return _robotId; }
+
     void assignTask(std::shared_ptr<Goal> goal);
     void finishTask(int distanceTraveled, double timeTaken);
     bool isFree() { return _isFree; }

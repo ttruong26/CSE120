@@ -29,7 +29,8 @@ int main()
     double testDistance = robot->predictTimeEstimation(goal1);
     std::cout << "Time Prediction: " << testDistance << std::endl;
     double testDistance2 = robot->predictTimeEstimation(goal2);
-    std::cout << "Time Prediction: " << testDistance2 << std::endl;
+    std::cout << "Time Prediction: " << testDistance2 << std::endl
+              << std::endl;
     ///
     /// End of TileGraph test
 
@@ -41,10 +42,12 @@ int main()
     ws.printGoals(); // List loaded goals
     std::cout << std::endl;
 
+    std::cout << "Default Assignment Table" << std::endl;
     ws.printAssignmentTable(); // Display the assignment map
-    std::cout << std::endl;
 
     ws.updateTable();
+    std::cout << std::endl;
+    std::cout << "Updated Assignment Table" << std::endl;
     ws.printAssignmentTable();
 
     ws.cleanUp();

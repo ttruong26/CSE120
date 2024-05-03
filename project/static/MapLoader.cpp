@@ -2,6 +2,7 @@
 
 using namespace std;
 
+// Positional Data
 void MapLoader::LoadMap(TileGraph &graph, std::vector<std::shared_ptr<Goal>> &goals, std::vector<std::shared_ptr<Line>> &lines, std::vector<std::shared_ptr<Data>> &dataPoints, std::string fileName)
 {
     vector<Point> boundCoordinates;
