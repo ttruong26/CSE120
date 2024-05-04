@@ -93,6 +93,7 @@ vector<pair<int, int>> astar(const Node& start, const Node& goal, const vector<p
     priority_queue<Node*, vector<Node*>, CompareNode> openList;
     vector<Node*> closedList;
     unordered_set<pair<int, int>> avoidSet;
+    unordered_set<pair<int, int>> visitedNodes;
 
     for (const auto& coord : avoidCoordinates) {
         avoidSet.insert(coord);
@@ -105,6 +106,7 @@ vector<pair<int, int>> astar(const Node& start, const Node& goal, const vector<p
         openList.pop();
 
         closedList.push_back(current);
+        visitedNodes.insert({current->x, current->y});
 
         if (*current == goal) {
             vector<pair<int, int>> path;
@@ -144,6 +146,9 @@ vector<pair<int, int>> astar(const Node& start, const Node& goal, const vector<p
                 if (isCloseToOtherRobots({newX, newY}, otherRobotsPositions, 1.0)) { // Adjust avoidance distance as needed
                     continue;
                 }
+
+                if (visitedNodes.count({newX, newY})) // Already visited this node
+                    continue;
 
                 Node* newNode = new Node(newX, newY);
                 newNode->parent = current;
