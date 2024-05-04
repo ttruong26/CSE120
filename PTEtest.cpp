@@ -2,6 +2,7 @@
 #include <vector>
 #include <cmath>
 #include <queue>
+#include <unordered_set>
 
 using namespace std;
 
@@ -35,9 +36,14 @@ struct CompareNode {
 };
 
 // A* algorithm implementation
-vector<pair<int, int>> astar(const Node& start, const Node& goal) {
+vector<pair<int, int>> astar(const Node& start, const Node& goal, const vector<pair<int, int>>& avoidCoordinates) {
     priority_queue<Node*, vector<Node*>, CompareNode> openList;
     vector<Node*> closedList;
+    unordered_set<pair<int, int>> avoidSet;
+
+    for (const auto& coord : avoidCoordinates) {
+        avoidSet.insert(coord);
+    }
 
     openList.push(new Node(start));
 
@@ -66,6 +72,9 @@ vector<pair<int, int>> astar(const Node& start, const Node& goal) {
                 int newY = current->y + dy;
 
                 if (newX < 0 || newX >= GRID_WIDTH || newY < 0 || newY >= GRID_HEIGHT)
+                    continue;
+
+                if (avoidSet.count({newX, newY})) // Avoid this coordinate
                     continue;
 
                 Node* newNode = new Node(newX, newY);
@@ -110,7 +119,9 @@ int main() {
     Node start(0, 0);
     Node goal(9, 9);
 
-    vector<pair<int, int>> path = astar(start, goal);
+    vector<pair<int, int>> avoidCoordinates = {{3, 4}, {3, 5}, {4, 4}, {4, 5}};
+
+    vector<pair<int, int>> path = astar(start, goal, avoidCoordinates);
 
     if (path.empty()) {
         cout << "No path found." << endl;
