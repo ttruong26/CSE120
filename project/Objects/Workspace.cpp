@@ -8,40 +8,46 @@ Workspace::Workspace()
 void Workspace::loadData()
 {
     // Load tile Graph
-    MapLoader::LoadMap(*mGraph, _goals, _lines, _dataPoints, "mapfiles/test1.map");
+    MapLoader::LoadMap(*mGraph, _goals, _lines, _dataPoints, "test.map");
     MapObject::_mGraph = mGraph;
+    this->_origin = mGraph->getOrigin();
     mGraph->print();
     std::cout << std::endl;
 
     this->placeLoadedGoals();
     this->placeLoadedObstacles();
-    this->createRobots();
+    // this->createRobots();
 
     // Once robots are and goals are loaded and placed on graph, we can create the assignment map
-    this->createAssignmentMap();
+    // this->createAssignmentMap();
 }
 
-void Workspace::createRobots()
+std::vector<Robot*> Workspace::createRobots(int num)
 {
-    // Create robots. For now, we will create two robots.
-    robot1 = new Robot(-2610, -1995, 1, 120);
-    mGraph->placeObject(robot1);
-    robot2 = new Robot(-2609, -486, 2, 120);
-    mGraph->placeObject(robot2);
+    for (int i=0; i<num; i++)
+    {
+        Robot *robot = new Robot(_origin._x, _origin._y, i, 1200);
+        mGraph->placeObject(robot);
+        _robots.push_back(robot);
+    }
+
+    return _robots;
 }
 
 void Workspace::createAssignmentMap()
 {
     for (int i = 0; i < _goals.size(); i++)
     {
-        _assignment[_goals[i]] = std::vector<Robot *>();
+        std::string goalName = _goals[i]->getGoalId();
+        _assignment[goalName] = std::vector<Robot *>();
+        _goalsMap[goalName] = _goals[i];
     }
 
     // We will assign every robot to every goal, to find the predicted time for each robot and find the best fit
     for (int i = 0; i < _goals.size(); i++)
     {
-        _assignment[_goals[i]].push_back(robot1);
-        _assignment[_goals[i]].push_back(robot2);
+        for (auto robot:_robots)
+            _assignment[_goals[i]->getGoalId()].push_back(robot);
     }
 }
 
@@ -66,17 +72,30 @@ void Workspace::printAssignmentTable()
     // Print the assignment table
     for (auto &pair : _assignment)
     {
-        std::shared_ptr<Goal> goal = pair.first;
-        std::vector<Robot *> &robots = pair.second;
-        std::cout << goal->getGoalId() << " | ";
+        std::string goal = pair.first;
+        std::vector<Robot *> &robotsList = pair.second;
+        std::cout << goal << " | ";
 
-        for (int i = 0; i < robots.size(); i++)
+        for (int i = 0; i < robotsList.size(); i++)
         {
-            robots[i]->print();
+            robotsList.at(i)->print();
             std::cout << ", ";
         }
         std::cout << "|" << std::endl;
     }
+}
+
+Robot* Workspace::getAssignedRobot(std::string goalId)
+{
+    static int i = -1;
+    std::cout << "Returning assigned robot " << i << " " << _robots.size() << std::endl;
+    return _robots[++i];
+    // auto goalIter = _assignment.find(goalId);
+    // if (goalIter != _assignment.end()) 
+    //     return goalIter->second[0];
+    // else
+    //     std::cout << "Goal not found in goal map" << std::endl;
+    // return nullptr;
 }
 
 void Workspace::placeLoadedObstacles()
@@ -162,14 +181,19 @@ void Workspace::updateTable()
     // Iterate through each goal in the map
     for (auto &pair : _assignment)
     {
-        std::shared_ptr<Goal> goal = pair.first;
-        std::vector<Robot *> &robots = pair.second;
+        std::string goal = pair.first;
+        std::vector<Robot *> &robotsUpdatedList = pair.second;
         std::cout << std::endl;
 
         // Calculate distance of each robot from the goal
-        std::sort(robots.begin(), robots.end(), [goal](Robot *a, Robot *b)
+        std::sort(robotsUpdatedList.begin(), robotsUpdatedList.end(), [this, goal] (Robot *a, Robot *b)
                   {
-                      return a->predictTimeEstimation(goal) < b->predictTimeEstimation(goal);
+                    auto goalIter = _goalsMap.find(goal);
+                    if (goalIter != _goalsMap.end()) 
+                        return a->predictTimeEstimation(goalIter->second) < b->predictTimeEstimation(goalIter->second);
+                    else
+                        std::cout << "Goal not found in goal map" << std::endl;
+                    return true;
                       //  from robot to destination.
                   });
 

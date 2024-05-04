@@ -47,6 +47,7 @@ public:
 
     void printGraph();
     void print();
+    Point getOrigin();
 
 private:
     int _width, _height;

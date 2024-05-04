@@ -75,6 +75,11 @@ int TileGraph::getYIndex(Tile *tile)
     return tile->getPosition()._y - _origin._y;
 }
 
+Point TileGraph::getOrigin()
+{
+    return _origin;
+}
+
 // Convert (x,y) to array indicies and place the tile in the array
 void TileGraph::placeTiletoArray(int x, int y, Tile *tile)
 {
