@@ -35,8 +35,50 @@ struct CompareNode {
     }
 };
 
+// Function to check if a point is close to any line segment
+bool isCloseToLineSegment(const pair<int, int>& point, const pair<pair<int, int>, pair<int, int>>& lineSegment, double avoidanceDistance) {
+    double x1 = lineSegment.first.first;
+    double y1 = lineSegment.first.second;
+    double x2 = lineSegment.second.first;
+    double y2 = lineSegment.second.second;
+    double x0 = point.first;
+    double y0 = point.second;
+
+    double A = x0 - x1;
+    double B = y0 - y1;
+    double C = x2 - x1;
+    double D = y2 - y1;
+
+    double dot = A * C + B * D;
+    double len_sq = C * C + D * D;
+    double param = -1;
+    if (len_sq != 0) // in case of 0 length line
+        param = dot / len_sq;
+
+    double xx, yy;
+
+    if (param < 0) {
+        xx = x1;
+        yy = y1;
+    }
+    else if (param > 1) {
+        xx = x2;
+        yy = y2;
+    }
+    else {
+        xx = x1 + param * C;
+        yy = y1 + param * D;
+    }
+
+    double dx = x0 - xx;
+    double dy = y0 - yy;
+    double distance = sqrt(dx * dx + dy * dy);
+
+    return distance <= avoidanceDistance;
+}
+
 // A* algorithm implementation
-vector<pair<int, int>> astar(const Node& start, const Node& goal, const vector<pair<int, int>>& avoidCoordinates) {
+vector<pair<int, int>> astar(const Node& start, const Node& goal, const vector<pair<int, int>>& avoidCoordinates, const vector<pair<pair<int, int>, pair<int, int>>>& avoidLineSegments) {
     priority_queue<Node*, vector<Node*>, CompareNode> openList;
     vector<Node*> closedList;
     unordered_set<pair<int, int>> avoidSet;
@@ -75,6 +117,17 @@ vector<pair<int, int>> astar(const Node& start, const Node& goal, const vector<p
                     continue;
 
                 if (avoidSet.count({newX, newY})) // Avoid this coordinate
+                    continue;
+
+                bool avoidLineSegment = false;
+                for (const auto& lineSegment : avoidLineSegments) {
+                    if (isCloseToLineSegment({newX, newY}, lineSegment, 0.5)) { // Adjust avoidance distance as needed
+                        avoidLineSegment = true;
+                        break;
+                    }
+                }
+
+                if (avoidLineSegment)
                     continue;
 
                 Node* newNode = new Node(newX, newY);
@@ -120,8 +173,9 @@ int main() {
     Node goal(9, 9);
 
     vector<pair<int, int>> avoidCoordinates = {{3, 4}, {3, 5}, {4, 4}, {4, 5}};
+    vector<pair<pair<int, int>, pair<int, int>>> avoidLineSegments = {{{1, 2}, {3, 2}}, {{5, 3}, {7, 4}}};
 
-    vector<pair<int, int>> path = astar(start, goal, avoidCoordinates);
+    vector<pair<int, int>> path = astar(start, goal, avoidCoordinates, avoidLineSegments);
 
     if (path.empty()) {
         cout << "No path found." << endl;
