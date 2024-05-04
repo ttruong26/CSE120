@@ -77,8 +77,19 @@ bool isCloseToLineSegment(const pair<int, int>& point, const pair<pair<int, int>
     return distance <= avoidanceDistance;
 }
 
+// Function to check if a point is close to any occupied position by other robots
+bool isCloseToOtherRobots(const pair<int, int>& point, const vector<pair<int, int>>& otherRobotsPositions, double avoidanceDistance) {
+    for (const auto& pos : otherRobotsPositions) {
+        double distance = euclideanDistance(Node(point.first, point.second), Node(pos.first, pos.second));
+        if (distance <= avoidanceDistance) {
+            return true;
+        }
+    }
+    return false;
+}
+
 // A* algorithm implementation
-vector<pair<int, int>> astar(const Node& start, const Node& goal, const vector<pair<int, int>>& avoidCoordinates, const vector<pair<pair<int, int>, pair<int, int>>>& avoidLineSegments) {
+vector<pair<int, int>> astar(const Node& start, const Node& goal, const vector<pair<int, int>>& avoidCoordinates, const vector<pair<pair<int, int>, pair<int, int>>>& avoidLineSegments, const vector<pair<int, int>>& otherRobotsPositions) {
     priority_queue<Node*, vector<Node*>, CompareNode> openList;
     vector<Node*> closedList;
     unordered_set<pair<int, int>> avoidSet;
@@ -130,6 +141,10 @@ vector<pair<int, int>> astar(const Node& start, const Node& goal, const vector<p
                 if (avoidLineSegment)
                     continue;
 
+                if (isCloseToOtherRobots({newX, newY}, otherRobotsPositions, 1.0)) { // Adjust avoidance distance as needed
+                    continue;
+                }
+
                 Node* newNode = new Node(newX, newY);
                 newNode->parent = current;
 
@@ -174,8 +189,9 @@ int main() {
 
     vector<pair<int, int>> avoidCoordinates = {{3, 4}, {3, 5}, {4, 4}, {4, 5}};
     vector<pair<pair<int, int>, pair<int, int>>> avoidLineSegments = {{{1, 2}, {3, 2}}, {{5, 3}, {7, 4}}};
+    vector<pair<int, int>> otherRobotsPositions = {{2, 3}, {6, 6}};
 
-    vector<pair<int, int>> path = astar(start, goal, avoidCoordinates, avoidLineSegments);
+    vector<pair<int, int>> path = astar(start, goal, avoidCoordinates, avoidLineSegments, otherRobotsPositions);
 
     if (path.empty()) {
         cout << "No path found." << endl;
