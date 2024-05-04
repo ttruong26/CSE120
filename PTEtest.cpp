@@ -1,221 +1,161 @@
 #include <iostream>
-#include <vector>
-#include <cmath>
-#include <queue>
-#include <unordered_set>
+ #include <vector>
+ #include <cmath>
+ #include <queue>
+ #include <unordered_set>
+ #include <utility>
 
-using namespace std;
-
-const int GRID_WIDTH = 10;
-const int GRID_HEIGHT = 10;
-
-const int SPEED_MM_PER_SEC = 1200;
-
+ using namespace std;
+// Define a structure for a node in the grid
 struct Node {
     int x, y;
-    int g, h, f;
+    double f, g, h;
     Node* parent;
-
-    Node(int _x, int _y) : x(_x), y(_y), g(0), h(0), f(0), parent(nullptr) {}
-
-    bool operator==(const Node& other) const {
-        return x == other.x && y == other.y;
+    Node(int _x, int _y, double _f, double _g, double _h, Node* _parent = nullptr)
+        : x(_x), y(_y), f(_f), g(_g), h(_h), parent(_parent) {}
+    bool operator>(const Node& other) const {
+        return f > other.f;
     }
 };
+// Function to calculate distance between two points
+double calculateDistance(int x1, int y1, int x2, int y2) {
+    return sqrt(pow((x2 - x1) * 100, 2) + pow((y2 - y1) * 100, 2)); // Convert back to millimeters for accurate distance calculation
+ }
 
-// Function to calculate Euclidean distance between two nodes
-double euclideanDistance(const Node& node1, const Node& node2) {
-    return sqrt(pow(node1.x - node2.x, 2) + pow(node1.y - node2.y, 2));
-}
-
-// Custom comparator for priority queue
-struct CompareNode {
-    bool operator()(const Node* lhs, const Node* rhs) const {
-        return lhs->f > rhs->f;
-    }
-};
-
-// Function to check if a point is close to any line segment
-bool isCloseToLineSegment(const pair<int, int>& point, const pair<pair<int, int>, pair<int, int>>& lineSegment, double avoidanceDistance) {
-    double x1 = lineSegment.first.first;
-    double y1 = lineSegment.first.second;
-    double x2 = lineSegment.second.first;
-    double y2 = lineSegment.second.second;
-    double x0 = point.first;
-    double y0 = point.second;
-
-    double A = x0 - x1;
-    double B = y0 - y1;
-    double C = x2 - x1;
-    double D = y2 - y1;
-
-    double dot = A * C + B * D;
-    double len_sq = C * C + D * D;
-    double param = -1;
-    if (len_sq != 0) // in case of 0 length line
-        param = dot / len_sq;
-
-    double xx, yy;
-
-    if (param < 0) {
-        xx = x1;
-        yy = y1;
-    }
-    else if (param > 1) {
-        xx = x2;
-        yy = y2;
-    }
-    else {
-        xx = x1 + param * C;
-        yy = y1 + param * D;
-    }
-
-    double dx = x0 - xx;
-    double dy = y0 - yy;
-    double distance = sqrt(dx * dx + dy * dy);
-
-    return distance <= avoidanceDistance;
-}
-
-// Function to check if a point is close to any occupied position by other robots
-bool isCloseToOtherRobots(const pair<int, int>& point, const vector<pair<int, int>>& otherRobotsPositions, double avoidanceDistance) {
-    for (const auto& pos : otherRobotsPositions) {
-        double distance = euclideanDistance(Node(point.first, point.second), Node(pos.first, pos.second));
-        if (distance <= avoidanceDistance) {
-            return true;
-        }
-    }
+ // Function to check if a point lies within an obstacle area
+ bool isInObstacle(int x, int y, const vector<pair<int, int> >& obstacles) {
+     for (size_t i = 0; i < obstacles.size(); ++i) {
+         if (x == obstacles[i].first && y >= obstacles[i].second) {
+             return true;
+         }
+     }
     return false;
 }
 
-// A* algorithm implementation
-vector<pair<int, int>> astar(const Node& start, const Node& goal, const vector<pair<int, int>>& avoidCoordinates, const vector<pair<pair<int, int>, pair<int, int>>>& avoidLineSegments, const vector<pair<int, int>>& otherRobotsPositions) {
-    priority_queue<Node*, vector<Node*>, CompareNode> openList;
-    vector<Node*> closedList;
-    unordered_set<pair<int, int>> avoidSet;
-    unordered_set<pair<int, int>> visitedNodes;
+ // Function to perform A* search
+ double performAStar(int startX, int startY, int goalX, int goalY, double averageSpeed, const vector<pair<int, int> >& obstacles, int gridSizeX, int gridSizeY) {
+     priority_queue<Node, vector<Node>, greater<Node> > openSet;
+     unordered_set<int> closedSet;
+     vector<vector<bool> > visited(gridSizeX, vector<bool>(gridSizeY, false));
 
-    for (const auto& coord : avoidCoordinates) {
-        avoidSet.insert(coord);
+     openSet.push(Node(startX, startY, 0, 0, calculateDistance(startX, startY, goalX, goalY)));
+    while (!openSet.empty()) {
+        Node current = openSet.top();
+        openSet.pop();
+        if (current.x == goalX && current.y == goalY) {
+             return current.g / averageSpeed;
+         }
+
+         closedSet.insert(current.x * gridSizeX + current.y);
+
+         for (int dx = -1; dx <= 1; ++dx) {
+             for (int dy = -1; dy <= 1; ++dy) {
+                if (dx == 0 && dy == 0) continue;
+                 int nextX = current.x + dx;
+                 int nextY = current.y + dy;
+
+                 if (nextX < 0 || nextX >= gridSizeX || nextY < 0 || nextY >= gridSizeY || visited[nextX][nextY] || isInObstacle(nextX, nextY, obstacles)) {
+                     continue;
+                 }
+
+                 double newCost = current.g + calculateDistance(current.x, current.y, nextX, nextY);
+
+                 if (closedSet.find(nextX * gridSizeX + nextY) == closedSet.end() || newCost < current.g) {
+                     double heuristic = calculateDistance(nextX, nextY, goalX, goalY);
+                     double f = newCost + heuristic;
+
+                     openSet.push(Node(nextX, nextY, f, newCost, heuristic));
+                     visited[nextX][nextY] = true;
+                 }
+             }
+         }
     }
-
-    openList.push(new Node(start));
-
-    while (!openList.empty()) {
-        Node* current = openList.top();
-        openList.pop();
-
-        closedList.push_back(current);
-        visitedNodes.insert({current->x, current->y});
-
-        if (*current == goal) {
-            vector<pair<int, int>> path;
-            while (current != nullptr) {
-                path.emplace_back(current->x, current->y);
-                current = current->parent;
-            }
-            return path;
-        }
-
-        // Generate children
-        for (int dx = -1; dx <= 1; ++dx) {
-            for (int dy = -1; dy <= 1; ++dy) {
-                if (dx == 0 && dy == 0)
-                    continue;
-
-                int newX = current->x + dx;
-                int newY = current->y + dy;
-
-                if (newX < 0 || newX >= GRID_WIDTH || newY < 0 || newY >= GRID_HEIGHT)
-                    continue;
-
-                if (avoidSet.count({newX, newY})) // Avoid this coordinate
-                    continue;
-
-                bool avoidLineSegment = false;
-                for (const auto& lineSegment : avoidLineSegments) {
-                    if (isCloseToLineSegment({newX, newY}, lineSegment, 0.5)) { // Adjust avoidance distance as needed
-                        avoidLineSegment = true;
-                        break;
-                    }
-                }
-
-                if (avoidLineSegment)
-                    continue;
-
-                if (isCloseToOtherRobots({newX, newY}, otherRobotsPositions, 1.0)) { // Adjust avoidance distance as needed
-                    continue;
-                }
-
-                if (visitedNodes.count({newX, newY})) // Already visited this node
-                    continue;
-
-                Node* newNode = new Node(newX, newY);
-                newNode->parent = current;
-
-                // Calculate costs
-                newNode->g = current->g + euclideanDistance(*current, *newNode);
-                newNode->h = euclideanDistance(*newNode, goal);
-                newNode->f = newNode->g + newNode->h;
-
-                // Check if the node is already in the closed list
-                bool inClosedList = false;
-                for (const auto& node : closedList) {
-                    if (*node == *newNode) {
-                        inClosedList = true;
-                        break;
-                    }
-                }
-
-                if (inClosedList)
-                    continue;
-
-                // Check if the node is already in the open list
-                bool inOpenList = false;
-                for (const auto& node : openList) {
-                    if (*node == *newNode) {
-                        inOpenList = true;
-                        break;
-                    }
-                }
-
-                if (!inOpenList)
-                    openList.push(newNode);
-            }
-        }
-    }
-
-    return {}; // No path found
+    return -1; // Path not found
 }
-
 int main() {
-    Node start(0, 0);
-    Node goal(9, 9);
+    int minPosX = -29200;
+    int minPosY = -19930;
+    int maxPosX = -10940;
+    int maxPosY = -4280;
+    double averageSpeed = 1200; // in mm/sec
+    // Define obstacle areas
+    vector<pair<int, int> > obstacles;
+     obstacles.push_back(make_pair(-26100, -18640));
+     obstacles.push_back(make_pair(-26100, -18540));
+     obstacles.push_back(make_pair(-26100, -18520));
+     obstacles.push_back(make_pair(-26100, -18440));
+     obstacles.push_back(make_pair(-26100, -18400));
+     obstacles.push_back(make_pair(-26100, -18360));
+     obstacles.push_back(make_pair(-26100, -18340));
+     obstacles.push_back(make_pair(-26100, -18320));
+     obstacles.push_back(make_pair(-26100, -18300));
+     obstacles.push_back(make_pair(-26100, -18280));
+     obstacles.push_back(make_pair(-26100, -18140));
+     obstacles.push_back(make_pair(-26100, -18120));
+     obstacles.push_back(make_pair(-26100, -15700));
+     obstacles.push_back(make_pair(-26080, -18580));
+     obstacles.push_back(make_pair(-26080, -18400));
+     obstacles.push_back(make_pair(-26080, -18160));
+     obstacles.push_back(make_pair(-26080, -18140));
+     obstacles.push_back(make_pair(-26080, -15680));
+     obstacles.push_back(make_pair(-26080, -11960));
+     obstacles.push_back(make_pair(-26060, -18560));
+     obstacles.push_back(make_pair(-26060, -18140));
+     obstacles.push_back(make_pair(-26060, -15680));
+     obstacles.push_back(make_pair(-26040, -18680));
+     obstacles.push_back(make_pair(-26040, -18560));
+     obstacles.push_back(make_pair(-26040, -18200));
+     obstacles.push_back(make_pair(-26040, -18160));
+     obstacles.push_back(make_pair(-26040, -18140));
+     obstacles.push_back(make_pair(-26020, -18600));
+     obstacles.push_back(make_pair(-26020, -18580));
+     obstacles.push_back(make_pair(-26020, -18160));
+     obstacles.push_back(make_pair(-26020, -15700));
+     obstacles.push_back(make_pair(-26020, -15680));
+     obstacles.push_back(make_pair(-26000, -18680));
+     obstacles.push_back(make_pair(-26000, -18660));
+     obstacles.push_back(make_pair(-26000, -18160));
+     obstacles.push_back(make_pair(-26000, -11120));
+     obstacles.push_back(make_pair(-25980, -18680));
+     obstacles.push_back(make_pair(-25980, -18480));
+     obstacles.push_back(make_pair(-25980, -18440));
+     obstacles.push_back(make_pair(-25980, -18160));
+     obstacles.push_back(make_pair(-25980, -18120));
+     obstacles.push_back(make_pair(-25980, -18100));
+     obstacles.push_back(make_pair(-25980, -15720));
+     obstacles.push_back(make_pair(-25980, -15680));
+     obstacles.push_back(make_pair(-25980, -13620));
+     obstacles.push_back(make_pair(-25980, -10100));
+     obstacles.push_back(make_pair(-25980, -10060));
+     obstacles.push_back(make_pair(-25980, -10040));
+     obstacles.push_back(make_pair(-25960, -18660));
+     obstacles.push_back(make_pair(-25960, -18580));
+     obstacles.push_back(make_pair(-25960, -18460));
+     obstacles.push_back(make_pair(-25960, -18440));
+     obstacles.push_back(make_pair(-25960, -18160));
+     obstacles.push_back(make_pair(-25960, -18120));
+     obstacles.push_back(make_pair(-25960, -13640));
+     obstacles.push_back(make_pair(-25960, -10020));
+     obstacles.push_back(make_pair(-25940, -18500));
+     obstacles.push_back(make_pair(-25940, -18140));
+     obstacles.push_back(make_pair(-25940, -15700));
+      obstacles.push_back(make_pair(-25940, -15680));
+      obstacles.push_back(make_pair(-25940, -13600));
+      // will include more obstacles
 
-    vector<pair<int, int>> avoidCoordinates = {{3, 4}, {3, 5}, {4, 4}, {4, 5}};
-    vector<pair<pair<int, int>, pair<int, int>>> avoidLineSegments = {{{1, 2}, {3, 2}}, {{5, 3}, {7, 4}}};
-    vector<pair<int, int>> otherRobotsPositions = {{2, 3}, {6, 6}};
 
-    vector<pair<int, int>> path = astar(start, goal, avoidCoordinates, avoidLineSegments, otherRobotsPositions);
+     // Calculate grid size
+     int gridSizeX = abs(maxPosX - minPosX) / 100 + 1;
+     int gridSizeY = abs(maxPosY - minPosY) / 100 + 1;
 
-    if (path.empty()) {
-        cout << "No path found." << endl;
-        return 0;
+     cout << "Starting A* search..." << endl;
+
+     double timeRemaining = performAStar((minPosX + abs(minPosX)) / 100, (minPosY + abs(minPosY)) / 100, (maxPosX + abs(minPosX)) / 100, (maxPosY + abs(minPosY)) / 100, averageSpeed, obstacles, gridSizeX, gridSizeY);
+
+     if (timeRemaining >= 0) {
+         cout << "Estimated time remaining: " << timeRemaining << " seconds" << endl;
+    } else {
+        cout << "Path not found!" << endl;
     }
-
-    cout << "Path: ";
-    for (auto it = path.rbegin(); it != path.rend(); ++it) {
-        cout << "(" << it->first << ", " << it->second << ") ";
-    }
-    cout << endl;
-
-    double totalDistance = 0;
-    for (size_t i = 1; i < path.size(); ++i) {
-        totalDistance += euclideanDistance(Node(path[i - 1].first, path[i - 1].second), Node(path[i].first, path[i].second));
-    }
-
-    double totalTime = totalDistance / SPEED_MM_PER_SEC;
-    cout << "Total Time (seconds): " << totalTime << endl;
-
     return 0;
 }
