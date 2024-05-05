@@ -9,9 +9,11 @@ class Data : public MapObject
 {
 public:
     Data();
+
     Data(int x, int y);
 
     void setPosition(int x, int y);
+
     Type getType() const override { return Type::Wall; }
 
     void print() override

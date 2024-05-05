@@ -4,12 +4,14 @@ Robot::Robot()
 {
     _robotId = 0;
     _currentTile = nullptr;
+    _isFree = true;
 }
 
 Robot::Robot(int x, int y, int id, double speed)
 {
     _robotId = id;
     _avgSpeed = speed;
+    _isFree = true;
     this->setPosition(x, y);
 }
 
@@ -39,6 +41,15 @@ void Robot::assignTask(std::shared_ptr<Goal> goal)
 {
     currentGoal = goal.get();
     _isFree = false;
+    _currentRun._goalPosition = goal->getCurrentPosition()->getPosition();
+    _currentRun._robotStartPos = _currentTile->getPosition();
+}
+
+void Robot::finishTask(double timeTaken)
+{
+    _isFree = true;
+    _currentRun._timeTaken = timeTaken;
+    _previousRuns[currentGoal->getGoalId()].push_back(_currentRun);
 }
 
 Goal *Robot::getCurrentGoal()
@@ -78,8 +89,18 @@ double Robot::predictTimeEstimation(std::shared_ptr<Goal> goal)
         // Check if goal reached
         if (current->getX() == end->getX() && current->getY() == end->getY())
         {
+            int inialEstimate = current->g / _avgSpeed;
             std::cout << "Path Distance:";
             std::cout << ": " << current->g << "\n";
+            std::cout << "Initial Estimate to reach goal:";
+            std::cout << ": " << inialEstimate << "sec\n";
+
+            double adjustedEstimate = weightedAverageTime(goalPosition, historicalData);
+            if (adjustedEstimate != -1)
+            {
+                return adjustedEstimate; // Or some combination of initialEstimate and adjustedEstimate
+            }
+            return initialEstimate;
             return current->g / _avgSpeed; // Return time to reach goal
         }
 
@@ -168,6 +189,28 @@ double Robot::predictTimeEstimation(std::shared_ptr<Goal> goal)
     */
 
     return -1; // If no path is found
+}
+
+double Robot::weightedAverageTime(std::shared_ptr<Goal> goal)
+{
+    auto it = _previousRuns.find(goal->getGoalId());
+    if (it != _previousRuns.end())
+    {
+        double weighted_sum = 0.0;
+        double weight_total = 0.0;
+
+        for (const auto &info : it->second)
+        {
+            // Find the euclidean distance between the robot's current position and the position of the robot that collected the data
+            double distance = sqrt(pow(_currentTile->getX() - info._robotStartPos._x, 2) + pow(_currentTile->getY() - info._robotStartPos._y, 2));
+            double weight = 1.0 / (distance + 1.0); // Adding 1 to avoid division by zero and reduce the impact of very small distances
+
+            weighted_sum += info._timeTaken * weight;
+            weight_total += weight;
+        }
+        return weighted_sum / weight_total;
+    }
+    return -1; // No historical data found
 }
 
 double Robot::reconstructPath(Tile *end)

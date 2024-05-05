@@ -78,7 +78,7 @@ void Line::drawLine()
             tempTile->setPosition(y, x);
             std::shared_ptr<Line> shared(this);
             tempTile->setObject(shared);
-            _tiles.push_back(tempTile);
+            _lineSegment.push_back(tempTile);
         }
         else
         {
@@ -86,7 +86,7 @@ void Line::drawLine()
             tempTile->setPosition(x, y);
             std::shared_ptr<Line> shared(this);
             tempTile->setObject(shared);
-            _tiles.push_back(tempTile);
+            _lineSegment.push_back(tempTile);
         }
 
         error -= deltaY;

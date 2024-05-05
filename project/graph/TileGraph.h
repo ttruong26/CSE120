@@ -44,6 +44,7 @@ public:
 
     int getWidth();
     int getHeight();
+    Point getOrigin() { return _origin; }
 
     void printGraph();
     void print();

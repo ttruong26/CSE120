@@ -15,11 +15,15 @@ public:
     Goal(int x, int y, double heading, std::string id);
 
     Type getType() const override { return Type::Goal; } // Determine whether the MapObject is a Goal.
-    void setPosition(int x, int y);                      // Set the position of the Goal.
+
+    void setPosition(int x, int y); // Set the position of the Goal.
 
     bool isWorking() { return _isActive; } // Ensure robot multiple robots don't work on the same goal.
 
-    std::string getGoalId() { return _goalId; } // Get the ID of the Goal.
+    void setWorking(bool working) { _isActive = working; }
+
+    std::string getGoalId() { return _goalId; }
+
     void print() override
     {
         std::cout << "Goal ID: " << _goalId << ", Position: (" << _currentTile->getPosition()._x << ", " << _currentTile->getPosition()._y << "), "

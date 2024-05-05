@@ -16,7 +16,9 @@ public:
     void setEndPoints(int x1, int y1, int x2, int y2);
 
     Type getType() const override { return Type::Wall; }
-    std::vector<Tile *> getTiles() { return _tiles; }
+
+    std::vector<Tile *> getTiles() { return _lineSegment; }
+
     void drawLine(); // Use Bresenhams algorithm to draw a line segment that connects the two endpoints, giving every point on the line an integer value for effeciency.
 
     void print() override
@@ -28,9 +30,9 @@ public:
     // Test
     void printLineSegment()
     {
-        for (int i = 0; i < _tiles.size(); i++)
+        for (int i = 0; i < _lineSegment.size(); i++)
         {
-            std::cout << "Tile " << i << ": (" << _tiles[i]->getPosition()._x << ", " << _tiles[i]->getPosition()._y << ")" << std::endl;
+            std::cout << "Tile " << i << ": (" << _lineSegment[i]->getPosition()._x << ", " << _lineSegment[i]->getPosition()._y << ")" << std::endl;
         }
     }
 
@@ -39,7 +41,7 @@ private:
     Tile *_endPoint;
 
     int _x1, _y1, _x2, _y2;
-    std::vector<Tile *> _tiles; // Vector to represent the tiles that the line passes through.
+    std::vector<Tile *> _lineSegment; // Vector to represent the tiles that the line passes through.
 };
 
 #endif

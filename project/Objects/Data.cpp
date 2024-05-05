@@ -8,6 +8,8 @@ Data::Data()
 Data::Data(int x, int y)
 {
     _currentTile = new Tile(x, y);
+    std::shared_ptr<Data> shared(this);
+    _currentTile->setObject(shared);
 }
 
 void Data::setPosition(int x, int y)

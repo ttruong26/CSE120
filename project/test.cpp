@@ -7,6 +7,7 @@
 
 int main()
 {
+    /*
     /// Test the TileGraph class while placing goals and robots. Tests the a* algorithm from Robots to Goals
     ///
     TileGraph *tg = new TileGraph(2000, 2000, -2000, -2000); // Create a 2000x2000 graph with the origin at (-2000, -2000)
@@ -33,6 +34,7 @@ int main()
               << std::endl;
     ///
     /// End of TileGraph test
+    */
 
     // Creates the workspace object
     Workspace ws;
@@ -45,12 +47,13 @@ int main()
     std::cout << "Default Assignment Table" << std::endl;
     ws.printAssignmentTable(); // Display the assignment map
 
-    ws.updateTable();
+    // ws.sortAssignmentTable();
     std::cout << std::endl;
     std::cout << "Updated Assignment Table" << std::endl;
     ws.printAssignmentTable();
+    ws.assignAllRobots();
 
-    ws.cleanUp();
+    // ws.cleanUp();
 
     return 0;
 }

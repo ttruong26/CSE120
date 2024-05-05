@@ -20,11 +20,11 @@ struct CompareTile
 class Robot : public MapObject
 {
 public:
-    struct RobotData
+    struct RunTimeInfo
     {
-        double time;
-        double pathDistance;
-        Point position;
+        double _timeTaken;
+        Point _robotStartPos;
+        Point _goalPosition;
     };
 
     Robot();
@@ -39,10 +39,13 @@ public:
     // Time is found by dividing the distance by the robot's average speed.
     double predictTimeEstimation(std::shared_ptr<Goal> goal);
 
+    // void setActualTime(std::string goalid, double time_seconds);
+
     int getId() { return _robotId; }
 
     void assignTask(std::shared_ptr<Goal> goal);
-    void finishTask(int distanceTraveled, double timeTaken);
+    void finishTask(double timeTaken);
+
     bool isFree() { return _isFree; }
 
     Goal *getCurrentGoal(); // If the robot is working, then return the goal robot is working on.
@@ -61,10 +64,12 @@ private:
 
     double _timeToGoal;
     Goal *currentGoal; // To know what goal a robot is working on.
-    double height;     // Not sure if needed for clearance issues
+    RunTimeInfo _currentRun;
 
-    std::unordered_map<Goal *, RobotData> _previousRuns;
+    double height; // Not sure if needed for clearance issues
 
-    void updateTimeEstimation();
+    std::unordered_map<std::string, std::vector<RunTimeInfo>> _previousRuns;
+
+    double weightedAverageTime(std::shared_ptr<Goal> goal);
     double reconstructPath(Tile *end);
 };
