@@ -1,4 +1,5 @@
 #include "Robot.h"
+#include <math.h>
 
 Robot::Robot()
 {
@@ -89,19 +90,18 @@ double Robot::predictTimeEstimation(std::shared_ptr<Goal> goal)
         // Check if goal reached
         if (current->getX() == end->getX() && current->getY() == end->getY())
         {
-            int inialEstimate = current->g / _avgSpeed;
+            int initialEstimate = current->g / _avgSpeed;
             std::cout << "Path Distance:";
             std::cout << ": " << current->g << "\n";
             std::cout << "Initial Estimate to reach goal:";
-            std::cout << ": " << inialEstimate << "sec\n";
+            std::cout << ": " << initialEstimate << "sec\n";
 
-            double adjustedEstimate = weightedAverageTime(goalPosition, historicalData);
+            double adjustedEstimate = weightedAverageTime(goal);
             if (adjustedEstimate != -1)
             {
                 return adjustedEstimate; // Or some combination of initialEstimate and adjustedEstimate
             }
-            return initialEstimate;
-            return current->g / _avgSpeed; // Return time to reach goal
+            return initialEstimate; // Return time to reach goal
         }
 
         // Check if node is already visited or in an obstacle
@@ -148,45 +148,6 @@ double Robot::predictTimeEstimation(std::shared_ptr<Goal> goal)
             }
         }
     }
-
-    /*
-    while (!openSet.empty())
-    {
-        std::cout << "Robot is finding path\n";
-        Tile *current = openSet.top();
-        openSet.pop();
-        openSetItems.erase(current);
-
-        // your existing logic
-        if (current->getX() == end->getX() && current->getY() == end->getY())
-        {
-            return reconstructPath(current); // Function to calculate the path length
-        }
-
-        closedSet.insert(current);
-
-        auto neighbors = _graph->getNeighbors(current); // Get neighbors of the current tile
-        for (Tile *neighbor : neighbors)
-        {
-            if (!neighbor || closedSet.find(neighbor) != closedSet.end() || neighbor->isWall()) // Make sure the neighbor is not out of bounds, not already visited, and not a wall
-                continue;
-
-            double tentative_gScore = current->g + current->cost(neighbor);
-            if (tentative_gScore < neighbor->g)
-            {
-                neighbor->parent = current;
-                neighbor->g = tentative_gScore;
-                neighbor->h = neighbor->calculateHeuristic(end);
-                neighbor->f = neighbor->g + neighbor->h;
-                if (openSetItems.find(neighbor) == openSetItems.end())
-                {
-                    openSet.push(neighbor);
-                    openSetItems.insert(neighbor);
-                }
-            }
-        }
-    }
-    */
 
     return -1; // If no path is found
 }
