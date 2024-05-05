@@ -16,7 +16,7 @@ void Workspace::loadData()
 
     this->placeLoadedGoals();
     this->placeLoadedObstacles();
-    this->createRobots();
+    this->createRobots(5);
 
     // Once robots are and goals are loaded and placed on graph, we can create the assignment map
     this->createAssignmentTable();
@@ -24,11 +24,15 @@ void Workspace::loadData()
 
 std::vector<Robot *> Workspace::createRobots(int num)
 {
+    int x = _origin._x;
+    int y = _origin._y;
     for (int i = 0; i < num; i++)
     {
-        Robot *robot = new Robot(_origin._x, _origin._y, i, 1200);
+        Robot *robot = new Robot(x, y, i, 1200);
         mGraph->placeObject(robot);
         _robots.push_back(robot);
+        x += 50;
+        y += 50;
     }
 
     return _robots;
@@ -39,7 +43,7 @@ void Workspace::createAssignmentTable()
     for (int i = 0; i < _goals.size(); i++)
     {
         std::string goalName = _goals[i]->getGoalId();
-        _assignment[goalName] = std::vector<Robot *>();
+        _assignment[goalName] = std::vector<RobotGoalPrediction>();
         _goalsMap[goalName] = _goals[i];
     }
 
@@ -47,7 +51,12 @@ void Workspace::createAssignmentTable()
     for (int i = 0; i < _goals.size(); i++)
     {
         for (auto robot : _robots)
-            _assignment[_goals[i]->getGoalId()].push_back(robot);
+        {
+            RobotGoalPrediction prediction;
+            prediction._robot = robot;
+            prediction._time = robot->predictTimeEstimation(_goals[i]);
+            _assignment[_goals[i]->getGoalId()].push_back(prediction);
+        }
     }
 }
 
@@ -65,15 +74,14 @@ void Workspace::printAssignmentTable()
     for (auto &pair : _assignment)
     {
         std::string goalName = pair.first;
-        std::vector<Robot *> &robotList = pair.second;
         std::cout << goalName << " | ";
-
-        for (int i = 0; i < robotList.size(); i++)
+        for (auto container : pair.second)
         {
-            robotList.at(i)->print();
-            std::cout << ", ";
+            Robot *robot = container._robot;
+            robot->print();
+            std::cout << " " << container._time << " | ";
         }
-        std::cout << "|" << std::endl;
+        std::cout << std::endl;
     }
 }
 
@@ -89,8 +97,9 @@ Robot *Workspace::getAssignedRobot(std::string goalId)
     {
         if (pair.first == goalId)
         {
-            for (auto robot : pair.second)
+            for (auto robotPredictionList : pair.second)
             {
+                Robot *robot = robotPredictionList._robot;
                 if (robot->isFree())
                 {
                     return robot;
@@ -150,8 +159,6 @@ void Workspace::placeLoadedGoals()
 void Workspace::cleanUp()
 {
     delete mGraph;
-    delete robot1;
-    delete robot2;
 }
 
 void Workspace::sortAssignmentTable()
@@ -161,26 +168,46 @@ void Workspace::sortAssignmentTable()
     for (auto &pair : _assignment)
     {
         std::string goal = pair.first;
-        std::vector<Robot *> &robotsUpdatedList = pair.second;
+        auto &robotPredictionList = pair.second;
         std::cout << std::endl;
 
         // Calculate distance of each robot from the goal
         // Calculate distance of each robot from the goal
-        std::sort(robotsUpdatedList.begin(), robotsUpdatedList.end(), [this, goal](Robot *a, Robot *b)
+        std::sort(robotPredictionList.begin(), robotPredictionList.end(), [this, goal](const RobotGoalPrediction &a, const RobotGoalPrediction &b)
                   {
+                    auto goalIter = _goalsMap.find(goal);
+                    if (goalIter != _goalsMap.end())
+                        return a._time < b._time;
+                    else
+                          std::cout << "Goal not found in goal map" << std::endl;
+                      return true;
+                    
+
+                    /*
                       auto goalIter = _goalsMap.find(goal);
                       if (goalIter != _goalsMap.end())
                           return a->predictTimeEstimation(goalIter->second) < b->predictTimeEstimation(goalIter->second);
                       else
                           std::cout << "Goal not found in goal map" << std::endl;
                       return true;
-                      //  from robot to destination.
-                  });
+                      */ });
         // Assign the robot with the shortest predicted time to the goal
         // robot[0]->assign(goal);
     }
 
     std::cout << "Robots assigned to goals." << std::endl;
+}
+
+Robot *Workspace::getRobot(int id)
+{
+    for (auto robot : _robots)
+    {
+        if (robot->getId() == id)
+        {
+            return robot;
+        }
+    }
+    return NULL;
 }
 
 /*

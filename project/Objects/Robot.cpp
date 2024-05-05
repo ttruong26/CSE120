@@ -90,17 +90,19 @@ double Robot::predictTimeEstimation(std::shared_ptr<Goal> goal)
         // Check if goal reached
         if (current->getX() == end->getX() && current->getY() == end->getY())
         {
-            int initialEstimate = current->g / _avgSpeed;
+            double initialEstimate = current->g / _avgSpeed;
             std::cout << "Path Distance:";
             std::cout << ": " << current->g << "\n";
             std::cout << "Initial Estimate to reach goal:";
             std::cout << ": " << initialEstimate << "sec\n";
 
+            /*
             double adjustedEstimate = weightedAverageTime(goal);
             if (adjustedEstimate != -1)
             {
                 return adjustedEstimate; // Or some combination of initialEstimate and adjustedEstimate
             }
+            */
             return initialEstimate; // Return time to reach goal
         }
 

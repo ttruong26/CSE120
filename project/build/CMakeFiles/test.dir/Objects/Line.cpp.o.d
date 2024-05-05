@@ -1,7 +1,7 @@
 CMakeFiles/test.dir/Objects/Line.cpp.o: \
-  /Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/Objects/Line.cpp \
-  /Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/Objects/Line.h \
-  /Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/Objects/MapObject.h \
+  /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/Objects/Line.cpp \
+  /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/Objects/Line.h \
+  /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/Objects/MapObject.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/memory \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__assert \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__config \
@@ -483,7 +483,7 @@ CMakeFiles/test.dir/Objects/Line.cpp.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/sortable.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/unreachable_sentinel.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/wrap_iter.h \
-  /Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/Objects/../graph/Tile.h \
+  /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/Objects/../graph/Tile.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iostream \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ios \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ios/fpos.h \
@@ -825,8 +825,8 @@ CMakeFiles/test.dir/Objects/Line.cpp.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk/usr/include/_types/_nl_item.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__locale_dir/locale_base_api/bsd_locale_defaults.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cstdarg \
-  /Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/graph/../include/Utility.h \
-  /Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/graph/../Objects/MapObject.h \
+  /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/graph/../include/Utility.h \
+  /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/graph/../Objects/MapObject.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/vector \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__format/formatter.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__format/format_fwd.h \

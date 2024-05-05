@@ -4,7 +4,7 @@
 # compile CXX with /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/static -I/Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/graph -I/Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/Objects -I/Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/include
+CXX_INCLUDES = -I/Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/static -I/Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/graph -I/Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/Objects -I/Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/include
 
 CXX_FLAGSx86_64 = -std=gnu++14 -arch x86_64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk -mmacosx-version-min=14.3
 

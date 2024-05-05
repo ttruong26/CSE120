@@ -13,7 +13,6 @@ public:
     struct RobotGoalPrediction
     {
         Robot *_robot;
-        std::shared_ptr<Goal> _goal;
         double _time;
     };
 
@@ -44,14 +43,10 @@ private:
     std::vector<Robot *> _robots;
     Point _origin;
 
-    Robot *robot1, *robot2, *robot3;
-
-    std::unordered_map<std::string, std::vector<Robot *>> _assignment; // Robot to goal assignment table. Each goal has all of the robots assigned to it, and we use the predicted time to determine which robot is the best fit for the goal.
+    std::unordered_map<std::string, std::vector<RobotGoalPrediction>> _assignment; // Robot to goal assignment table. Each goal has all of the robots assigned to it, and we use the predicted time to determine which robot is the best fit for the goal.
     std::unordered_map<std::string, std::shared_ptr<Goal>> _goalsMap;
 
     // Helper function to place loaded objects onto tileMap
     void placeLoadedGoals();
     void placeLoadedObstacles();
-
-    void assignRobotToGoal(std::shared_ptr<Goal> goal);
 };

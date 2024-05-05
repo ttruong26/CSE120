@@ -1,6 +1,6 @@
 CMakeFiles/test.dir/Objects/MapObject.cpp.o: \
-  /Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/Objects/MapObject.cpp \
-  /Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/Objects/MapObject.h \
+  /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/Objects/MapObject.cpp \
+  /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/Objects/MapObject.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/memory \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__assert \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__config \

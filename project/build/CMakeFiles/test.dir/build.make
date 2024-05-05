@@ -53,10 +53,10 @@ RM = /usr/local/Cellar/cmake/3.27.4/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project
+CMAKE_SOURCE_DIR = /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/build
+CMAKE_BINARY_DIR = /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/test.dir/depend.make
@@ -70,144 +70,144 @@ include CMakeFiles/test.dir/progress.make
 include CMakeFiles/test.dir/flags.make
 
 CMakeFiles/test.dir/test.cpp.o: CMakeFiles/test.dir/flags.make
-CMakeFiles/test.dir/test.cpp.o: /Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/test.cpp
+CMakeFiles/test.dir/test.cpp.o: /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/test.cpp
 CMakeFiles/test.dir/test.cpp.o: CMakeFiles/test.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/test.dir/test.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/test.dir/test.cpp.o -MF CMakeFiles/test.dir/test.cpp.o.d -o CMakeFiles/test.dir/test.cpp.o -c /Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/test.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/test.dir/test.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/test.dir/test.cpp.o -MF CMakeFiles/test.dir/test.cpp.o.d -o CMakeFiles/test.dir/test.cpp.o -c /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/test.cpp
 
 CMakeFiles/test.dir/test.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/test.dir/test.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/test.cpp > CMakeFiles/test.dir/test.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/test.cpp > CMakeFiles/test.dir/test.cpp.i
 
 CMakeFiles/test.dir/test.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/test.dir/test.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/test.cpp -o CMakeFiles/test.dir/test.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/test.cpp -o CMakeFiles/test.dir/test.cpp.s
 
 CMakeFiles/test.dir/graph/TileGraph.cpp.o: CMakeFiles/test.dir/flags.make
-CMakeFiles/test.dir/graph/TileGraph.cpp.o: /Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/graph/TileGraph.cpp
+CMakeFiles/test.dir/graph/TileGraph.cpp.o: /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/graph/TileGraph.cpp
 CMakeFiles/test.dir/graph/TileGraph.cpp.o: CMakeFiles/test.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/test.dir/graph/TileGraph.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/test.dir/graph/TileGraph.cpp.o -MF CMakeFiles/test.dir/graph/TileGraph.cpp.o.d -o CMakeFiles/test.dir/graph/TileGraph.cpp.o -c /Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/graph/TileGraph.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/test.dir/graph/TileGraph.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/test.dir/graph/TileGraph.cpp.o -MF CMakeFiles/test.dir/graph/TileGraph.cpp.o.d -o CMakeFiles/test.dir/graph/TileGraph.cpp.o -c /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/graph/TileGraph.cpp
 
 CMakeFiles/test.dir/graph/TileGraph.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/test.dir/graph/TileGraph.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/graph/TileGraph.cpp > CMakeFiles/test.dir/graph/TileGraph.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/graph/TileGraph.cpp > CMakeFiles/test.dir/graph/TileGraph.cpp.i
 
 CMakeFiles/test.dir/graph/TileGraph.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/test.dir/graph/TileGraph.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/graph/TileGraph.cpp -o CMakeFiles/test.dir/graph/TileGraph.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/graph/TileGraph.cpp -o CMakeFiles/test.dir/graph/TileGraph.cpp.s
 
 CMakeFiles/test.dir/graph/Tile.cpp.o: CMakeFiles/test.dir/flags.make
-CMakeFiles/test.dir/graph/Tile.cpp.o: /Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/graph/Tile.cpp
+CMakeFiles/test.dir/graph/Tile.cpp.o: /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/graph/Tile.cpp
 CMakeFiles/test.dir/graph/Tile.cpp.o: CMakeFiles/test.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/test.dir/graph/Tile.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/test.dir/graph/Tile.cpp.o -MF CMakeFiles/test.dir/graph/Tile.cpp.o.d -o CMakeFiles/test.dir/graph/Tile.cpp.o -c /Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/graph/Tile.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/test.dir/graph/Tile.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/test.dir/graph/Tile.cpp.o -MF CMakeFiles/test.dir/graph/Tile.cpp.o.d -o CMakeFiles/test.dir/graph/Tile.cpp.o -c /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/graph/Tile.cpp
 
 CMakeFiles/test.dir/graph/Tile.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/test.dir/graph/Tile.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/graph/Tile.cpp > CMakeFiles/test.dir/graph/Tile.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/graph/Tile.cpp > CMakeFiles/test.dir/graph/Tile.cpp.i
 
 CMakeFiles/test.dir/graph/Tile.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/test.dir/graph/Tile.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/graph/Tile.cpp -o CMakeFiles/test.dir/graph/Tile.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/graph/Tile.cpp -o CMakeFiles/test.dir/graph/Tile.cpp.s
 
 CMakeFiles/test.dir/Objects/Robot.cpp.o: CMakeFiles/test.dir/flags.make
-CMakeFiles/test.dir/Objects/Robot.cpp.o: /Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/Objects/Robot.cpp
+CMakeFiles/test.dir/Objects/Robot.cpp.o: /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/Objects/Robot.cpp
 CMakeFiles/test.dir/Objects/Robot.cpp.o: CMakeFiles/test.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/test.dir/Objects/Robot.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/test.dir/Objects/Robot.cpp.o -MF CMakeFiles/test.dir/Objects/Robot.cpp.o.d -o CMakeFiles/test.dir/Objects/Robot.cpp.o -c /Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/Objects/Robot.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/test.dir/Objects/Robot.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/test.dir/Objects/Robot.cpp.o -MF CMakeFiles/test.dir/Objects/Robot.cpp.o.d -o CMakeFiles/test.dir/Objects/Robot.cpp.o -c /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/Objects/Robot.cpp
 
 CMakeFiles/test.dir/Objects/Robot.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/test.dir/Objects/Robot.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/Objects/Robot.cpp > CMakeFiles/test.dir/Objects/Robot.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/Objects/Robot.cpp > CMakeFiles/test.dir/Objects/Robot.cpp.i
 
 CMakeFiles/test.dir/Objects/Robot.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/test.dir/Objects/Robot.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/Objects/Robot.cpp -o CMakeFiles/test.dir/Objects/Robot.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/Objects/Robot.cpp -o CMakeFiles/test.dir/Objects/Robot.cpp.s
 
 CMakeFiles/test.dir/Objects/Goal.cpp.o: CMakeFiles/test.dir/flags.make
-CMakeFiles/test.dir/Objects/Goal.cpp.o: /Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/Objects/Goal.cpp
+CMakeFiles/test.dir/Objects/Goal.cpp.o: /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/Objects/Goal.cpp
 CMakeFiles/test.dir/Objects/Goal.cpp.o: CMakeFiles/test.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/test.dir/Objects/Goal.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/test.dir/Objects/Goal.cpp.o -MF CMakeFiles/test.dir/Objects/Goal.cpp.o.d -o CMakeFiles/test.dir/Objects/Goal.cpp.o -c /Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/Objects/Goal.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/test.dir/Objects/Goal.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/test.dir/Objects/Goal.cpp.o -MF CMakeFiles/test.dir/Objects/Goal.cpp.o.d -o CMakeFiles/test.dir/Objects/Goal.cpp.o -c /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/Objects/Goal.cpp
 
 CMakeFiles/test.dir/Objects/Goal.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/test.dir/Objects/Goal.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/Objects/Goal.cpp > CMakeFiles/test.dir/Objects/Goal.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/Objects/Goal.cpp > CMakeFiles/test.dir/Objects/Goal.cpp.i
 
 CMakeFiles/test.dir/Objects/Goal.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/test.dir/Objects/Goal.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/Objects/Goal.cpp -o CMakeFiles/test.dir/Objects/Goal.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/Objects/Goal.cpp -o CMakeFiles/test.dir/Objects/Goal.cpp.s
 
 CMakeFiles/test.dir/Objects/Line.cpp.o: CMakeFiles/test.dir/flags.make
-CMakeFiles/test.dir/Objects/Line.cpp.o: /Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/Objects/Line.cpp
+CMakeFiles/test.dir/Objects/Line.cpp.o: /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/Objects/Line.cpp
 CMakeFiles/test.dir/Objects/Line.cpp.o: CMakeFiles/test.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/test.dir/Objects/Line.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/test.dir/Objects/Line.cpp.o -MF CMakeFiles/test.dir/Objects/Line.cpp.o.d -o CMakeFiles/test.dir/Objects/Line.cpp.o -c /Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/Objects/Line.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/test.dir/Objects/Line.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/test.dir/Objects/Line.cpp.o -MF CMakeFiles/test.dir/Objects/Line.cpp.o.d -o CMakeFiles/test.dir/Objects/Line.cpp.o -c /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/Objects/Line.cpp
 
 CMakeFiles/test.dir/Objects/Line.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/test.dir/Objects/Line.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/Objects/Line.cpp > CMakeFiles/test.dir/Objects/Line.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/Objects/Line.cpp > CMakeFiles/test.dir/Objects/Line.cpp.i
 
 CMakeFiles/test.dir/Objects/Line.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/test.dir/Objects/Line.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/Objects/Line.cpp -o CMakeFiles/test.dir/Objects/Line.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/Objects/Line.cpp -o CMakeFiles/test.dir/Objects/Line.cpp.s
 
 CMakeFiles/test.dir/Objects/Data.cpp.o: CMakeFiles/test.dir/flags.make
-CMakeFiles/test.dir/Objects/Data.cpp.o: /Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/Objects/Data.cpp
+CMakeFiles/test.dir/Objects/Data.cpp.o: /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/Objects/Data.cpp
 CMakeFiles/test.dir/Objects/Data.cpp.o: CMakeFiles/test.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/test.dir/Objects/Data.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/test.dir/Objects/Data.cpp.o -MF CMakeFiles/test.dir/Objects/Data.cpp.o.d -o CMakeFiles/test.dir/Objects/Data.cpp.o -c /Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/Objects/Data.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/test.dir/Objects/Data.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/test.dir/Objects/Data.cpp.o -MF CMakeFiles/test.dir/Objects/Data.cpp.o.d -o CMakeFiles/test.dir/Objects/Data.cpp.o -c /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/Objects/Data.cpp
 
 CMakeFiles/test.dir/Objects/Data.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/test.dir/Objects/Data.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/Objects/Data.cpp > CMakeFiles/test.dir/Objects/Data.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/Objects/Data.cpp > CMakeFiles/test.dir/Objects/Data.cpp.i
 
 CMakeFiles/test.dir/Objects/Data.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/test.dir/Objects/Data.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/Objects/Data.cpp -o CMakeFiles/test.dir/Objects/Data.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/Objects/Data.cpp -o CMakeFiles/test.dir/Objects/Data.cpp.s
 
 CMakeFiles/test.dir/Objects/Workspace.cpp.o: CMakeFiles/test.dir/flags.make
-CMakeFiles/test.dir/Objects/Workspace.cpp.o: /Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/Objects/Workspace.cpp
+CMakeFiles/test.dir/Objects/Workspace.cpp.o: /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/Objects/Workspace.cpp
 CMakeFiles/test.dir/Objects/Workspace.cpp.o: CMakeFiles/test.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/test.dir/Objects/Workspace.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/test.dir/Objects/Workspace.cpp.o -MF CMakeFiles/test.dir/Objects/Workspace.cpp.o.d -o CMakeFiles/test.dir/Objects/Workspace.cpp.o -c /Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/Objects/Workspace.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/test.dir/Objects/Workspace.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/test.dir/Objects/Workspace.cpp.o -MF CMakeFiles/test.dir/Objects/Workspace.cpp.o.d -o CMakeFiles/test.dir/Objects/Workspace.cpp.o -c /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/Objects/Workspace.cpp
 
 CMakeFiles/test.dir/Objects/Workspace.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/test.dir/Objects/Workspace.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/Objects/Workspace.cpp > CMakeFiles/test.dir/Objects/Workspace.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/Objects/Workspace.cpp > CMakeFiles/test.dir/Objects/Workspace.cpp.i
 
 CMakeFiles/test.dir/Objects/Workspace.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/test.dir/Objects/Workspace.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/Objects/Workspace.cpp -o CMakeFiles/test.dir/Objects/Workspace.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/Objects/Workspace.cpp -o CMakeFiles/test.dir/Objects/Workspace.cpp.s
 
 CMakeFiles/test.dir/static/MapLoader.cpp.o: CMakeFiles/test.dir/flags.make
-CMakeFiles/test.dir/static/MapLoader.cpp.o: /Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/static/MapLoader.cpp
+CMakeFiles/test.dir/static/MapLoader.cpp.o: /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/static/MapLoader.cpp
 CMakeFiles/test.dir/static/MapLoader.cpp.o: CMakeFiles/test.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/test.dir/static/MapLoader.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/test.dir/static/MapLoader.cpp.o -MF CMakeFiles/test.dir/static/MapLoader.cpp.o.d -o CMakeFiles/test.dir/static/MapLoader.cpp.o -c /Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/static/MapLoader.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/test.dir/static/MapLoader.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/test.dir/static/MapLoader.cpp.o -MF CMakeFiles/test.dir/static/MapLoader.cpp.o.d -o CMakeFiles/test.dir/static/MapLoader.cpp.o -c /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/static/MapLoader.cpp
 
 CMakeFiles/test.dir/static/MapLoader.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/test.dir/static/MapLoader.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/static/MapLoader.cpp > CMakeFiles/test.dir/static/MapLoader.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/static/MapLoader.cpp > CMakeFiles/test.dir/static/MapLoader.cpp.i
 
 CMakeFiles/test.dir/static/MapLoader.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/test.dir/static/MapLoader.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/static/MapLoader.cpp -o CMakeFiles/test.dir/static/MapLoader.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/static/MapLoader.cpp -o CMakeFiles/test.dir/static/MapLoader.cpp.s
 
 CMakeFiles/test.dir/Objects/MapObject.cpp.o: CMakeFiles/test.dir/flags.make
-CMakeFiles/test.dir/Objects/MapObject.cpp.o: /Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/Objects/MapObject.cpp
+CMakeFiles/test.dir/Objects/MapObject.cpp.o: /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/Objects/MapObject.cpp
 CMakeFiles/test.dir/Objects/MapObject.cpp.o: CMakeFiles/test.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/test.dir/Objects/MapObject.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/test.dir/Objects/MapObject.cpp.o -MF CMakeFiles/test.dir/Objects/MapObject.cpp.o.d -o CMakeFiles/test.dir/Objects/MapObject.cpp.o -c /Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/Objects/MapObject.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/test.dir/Objects/MapObject.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/test.dir/Objects/MapObject.cpp.o -MF CMakeFiles/test.dir/Objects/MapObject.cpp.o.d -o CMakeFiles/test.dir/Objects/MapObject.cpp.o -c /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/Objects/MapObject.cpp
 
 CMakeFiles/test.dir/Objects/MapObject.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/test.dir/Objects/MapObject.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/Objects/MapObject.cpp > CMakeFiles/test.dir/Objects/MapObject.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/Objects/MapObject.cpp > CMakeFiles/test.dir/Objects/MapObject.cpp.i
 
 CMakeFiles/test.dir/Objects/MapObject.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/test.dir/Objects/MapObject.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/Objects/MapObject.cpp -o CMakeFiles/test.dir/Objects/MapObject.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/Objects/MapObject.cpp -o CMakeFiles/test.dir/Objects/MapObject.cpp.s
 
 # Object files for target test
 test_OBJECTS = \
@@ -237,7 +237,7 @@ test: CMakeFiles/test.dir/static/MapLoader.cpp.o
 test: CMakeFiles/test.dir/Objects/MapObject.cpp.o
 test: CMakeFiles/test.dir/build.make
 test: CMakeFiles/test.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Linking CXX executable test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Linking CXX executable test"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/test.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -249,6 +249,6 @@ CMakeFiles/test.dir/clean:
 .PHONY : CMakeFiles/test.dir/clean
 
 CMakeFiles/test.dir/depend:
-	cd /Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project /Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project /Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/build /Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/build /Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/build/CMakeFiles/test.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/build /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/build /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/build/CMakeFiles/test.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/test.dir/depend
 

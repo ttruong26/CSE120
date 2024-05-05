@@ -42,15 +42,18 @@ int main()
                    // Also creates Robots and assigns them to Goals.
 
     ws.printGoals(); // List loaded goals
+
     std::cout << std::endl;
 
     std::cout << "Default Assignment Table" << std::endl;
     ws.printAssignmentTable(); // Display the assignment map
 
-    // ws.sortAssignmentTable();
+    ws.sortAssignmentTable();
     std::cout << std::endl;
     std::cout << "Updated Assignment Table" << std::endl;
     ws.printAssignmentTable();
+
+    std::cout << std::endl;
     ws.assignAllRobots();
 
     // ws.cleanUp();

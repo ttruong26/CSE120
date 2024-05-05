@@ -1,4 +1,4 @@
-# Install script for directory: /Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project
+# Install script for directory: /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/tylertruong/VSCodeFolders/CSE120/GitHub/CSE120/project/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
