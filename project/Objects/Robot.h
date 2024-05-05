@@ -8,6 +8,7 @@
 
 #include <queue>
 #include <unordered_set>
+#include <math.h>
 
 struct CompareTile
 {
@@ -43,6 +44,7 @@ public:
 
     int getId() { return _robotId; }
 
+    // Start the task to Cache Positional Info, finish Task to store the time taken.
     void assignTask(std::shared_ptr<Goal> goal);
     void finishTask(double timeTaken);
 
