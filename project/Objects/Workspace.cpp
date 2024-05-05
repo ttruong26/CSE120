@@ -60,6 +60,20 @@ void Workspace::createAssignmentTable()
     }
 }
 
+void Workspace::updateAssignmentTable()
+{
+    for (auto &pair : _assignment)
+    {
+        std::string goal = pair.first;
+        auto &robotPredictionList = pair.second;
+        for (auto &robotPrediction : robotPredictionList)
+        {
+            robotPrediction._time = robotPrediction._robot->predictTimeEstimation(_goalsMap[goal]);
+        }
+    }
+    this->sortAssignmentTable();
+}
+
 void Workspace::printGoals()
 {
     for (int i = 0; i < _goals.size(); i++)
