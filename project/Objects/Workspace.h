@@ -32,6 +32,7 @@ public:
 
     void createAssignmentTable();
     void sortAssignmentTable();
+    void updateAssignmentTable();
 
     Robot *getRobot(int id);
 
