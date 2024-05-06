@@ -95,7 +95,7 @@ double Robot::predictTimeEstimation(std::shared_ptr<Goal> goal)
         // Check if goal reached
         if (current->getX() == end->getX() && current->getY() == end->getY())
         {
-            double initialEstimate = current->g / _avgSpeed;
+            double initialEstimate = (current->g*10) / _avgSpeed;
             std::cout << "Path Distance:";
             std::cout << ": " << current->g << "\n";
             std::cout << "Initial Estimate to reach goal:";
@@ -173,7 +173,9 @@ double Robot::getAverageAtSamePosition(std::shared_ptr<Goal> goal)
                 count++;
             }
         }
-        return sum / count; // Return the average time
+        double avg = sum/count;
+        std::cout << "Robot is " << getId() << " Time is updated: " << avg << std::endl << std::flush;
+        return avg; // Return the average time
     }
     return -1; // No historical data found
 }

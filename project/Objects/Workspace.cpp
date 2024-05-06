@@ -8,7 +8,7 @@ Workspace::Workspace()
 void Workspace::loadData()
 {
     // Load tile Graph
-    MapLoader::LoadMap(*mGraph, _goals, _lines, _dataPoints, "mapfiles/test1.map");
+    MapLoader::LoadMap(*mGraph, _goals, _lines, _dataPoints, "mapfiles/test.map");
     MapObject::_mGraph = mGraph;
     this->_origin = mGraph->getOrigin();
     mGraph->print();
@@ -27,7 +27,7 @@ std::vector<Robot *> Workspace::createRobots(int num)
     int y = _origin._y;
     for (int i = 0; i < num; i++)
     {
-        Robot *robot = new Robot(x, y, i, 1200);
+        Robot *robot = new Robot(x, y, i, 200);
         mGraph->placeObject(robot);
         _robots.push_back(robot);
         x += 50;
