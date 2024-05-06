@@ -40,6 +40,25 @@ std::vector<Robot *> Workspace::createRobots(int num)
     return _robots;
 }
 
+void Workspace::addRobot(Robot *robot)
+{
+    _robots.push_back(robot);
+    if (_assignment.size() == 0)
+        this->createAssignmentTable();
+    else
+    {
+        for (int i = 0; i < _goals.size(); i++)
+        {
+            std::string goalName = _goals[i]->getGoalId();
+            RobotGoalPrediction prediction;
+            prediction._robot = robot;
+            prediction._time = robot->predictTimeEstimation(_goals[i]);
+            _assignment[goalName].push_back(prediction);
+        }
+    }
+    this->sortAssignmentTable();
+}
+
 void Workspace::createAssignmentTable()
 {
     for (int i = 0; i < _goals.size(); i++)
@@ -149,6 +168,10 @@ void Workspace::setRobotWorking(Robot *robot)
     for (const auto &pair : _assignment)
     {
         std::string goal = pair.first;
+        if (_goalsMap[goal]->isWorking() == true)
+        {
+            continue;
+        }
         auto &robotPredictionList = pair.second;
         // Check if the given robot is the assigned robot for the goal
         if (robot->getId() == getAssignedRobot(goal)->getId())
@@ -161,16 +184,25 @@ void Workspace::setRobotWorking(Robot *robot)
                 }
         }
     }
-    std::cout << "Robot " << robot->getId() << " is assigned to " << bestGoal << std::endl;
+    std::cout << "Robot " << robot->getId() << " is set to work on " << bestGoal << std::endl;
     robot->assignTask(_goalsMap[bestGoal]);
+    _goalsMap[bestGoal]->setWorking(true);
 }
 
-void Workspace::assignAllRobots()
+void Workspace::setAllRobotsWorking()
 {
     for (auto &pair : _assignment)
     {
-        assignRobotToGoal(pair.first);
+        Robot *robot = getAssignedRobot(pair.first);
+        this->setRobotWorking(robot);
     }
+    /*
+    for (auto &robot : _robots)
+    {
+        // this->setRobotWorking(robot);
+        //  assignRobotToGoal(pair.first);
+    }
+    */
 }
 
 void Workspace::placeLoadedObstacles()

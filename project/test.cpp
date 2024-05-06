@@ -50,20 +50,34 @@ int main()
     ws.printAssignmentTable();
     std::cout << std::endl;
 
-    Robot *robot1 = ws.getAssignedRobot("Goal113");
+    Robot *robot4 = ws.getAssignedRobot("Goal113");
     std::cout << std::endl;
-    robot1->print();
+    robot4->print();
     std::cout << std::endl;
-    robot1->moveTo(-2000, -500);
-    robot1->print();
-    std::cout << std::endl;
+
+    // ws.setRobotWorking(robot1);
+    ws.setAllRobotsWorking();
+
+    for (auto robot : robots)
+    {
+        robot->finishTask(100.0);
+    }
+
+    for (auto goals : ws.getGoals())
+    {
+        goals->setWorking(false);
+    }
+
+    // robot1->moveTo(-2000, -500);
+    // robot1->print();
+    // std::cout << std::endl;
 
     ws.updateAssignmentTable();
     ws.printAssignmentTable();
 
-    // ws.assignAllRobots();
+    ws.setAllRobotsWorking();
 
-    ws.setRobotWorking(robot1);
+    // ws.assignAllRobots();
 
     // ws.cleanUp();
 
