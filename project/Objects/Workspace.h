@@ -24,7 +24,7 @@ public:
     Robot *getAssignedRobot(std::string goalId);
     std::vector<std::shared_ptr<Goal>> getGoals() { return _goals; }
 
-    void assignAllRobots();
+    void setAllRobotsWorking();
     void assignRobotToGoal(std::string goalId);
     void setRobotWorking(Robot *robot);
 
