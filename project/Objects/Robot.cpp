@@ -23,18 +23,23 @@ void Robot::setPosition(Tile *tile)
 
 void Robot::setPosition(int x, int y)
 {
-    _currentTile = new Tile(x, y);
-
-    std::shared_ptr<Robot> shared(this);
-    _currentTile->setObject(shared);
+    if (_mGraph->getTileAt(x, y)) // Check if their is an object at the next tile.
+    {
+        _currentTile = new Tile(x, y);
+        std::shared_ptr<Robot> shared(this);
+        _currentTile->setObject(shared);
+        _mGraph->placeObject(this);
+    }
 }
 
 void Robot::moveTo(int x, int y)
 {
     if (_mGraph->getTileAt(x, y)) // Check if their is an object at the next tile.
     {
-        this->setPosition(x, y);
-        _mGraph->placeObject(this);
+        _currentTile = _mGraph->getTileAt(x, y);
+        std::shared_ptr<Robot> shared(this);
+        _currentTile->setObject(shared);
+        //_mGraph->placeObject(this);
     }
 }
 
@@ -165,13 +170,14 @@ double Robot::weightedAverageTime(std::shared_ptr<Goal> goal)
         for (const auto &info : it->second)
         {
             // Find the euclidean distance between the robot's current position and the position of the robot that collected the data
-            double distance = sqrt(pow(_currentTile->getX() - info._robotStartPos._x, 2) + pow(_currentTile->getY() - info._robotStartPos._y, 2));
+            double distance = euclideanDistance(_currentTile->getPosition(), info._robotStartPos);
+
             double weight = 1.0 / (distance + 1.0); // Adding 1 to avoid division by zero and reduce the impact of very small distances
 
             weighted_sum += info._timeTaken * weight;
             weight_total += weight;
         }
-        return weighted_sum / weight_total;
+        return weighted_sum / weight_total; // Return the weighted average time
     }
     return -1; // No historical data found
 }
@@ -186,4 +192,9 @@ double Robot::reconstructPath(Tile *end)
         current = current->parent;
     }
     return pathLength;
+}
+
+double Robot::euclideanDistance(Point a, Point b)
+{
+    return sqrt(pow(a._x - b._x, 2) + pow(a._y - b._y, 2));
 }

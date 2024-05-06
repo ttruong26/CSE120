@@ -41,20 +41,26 @@ int main()
     ws.loadData(); // Grab relevant information from mapfile and creates workspace with Goals and Obstacles as coordinate Graph.
                    // Also creates Robots and assigns them to Goals.
 
+    std::vector<Robot *> robots = ws.createRobots(5);
     ws.printGoals(); // List loaded goals
-
     std::cout << std::endl;
-
-    std::cout << "Default Assignment Table" << std::endl;
-    ws.printAssignmentTable(); // Display the assignment map
-
-    ws.sortAssignmentTable();
-    std::cout << std::endl;
-    std::cout << "Updated Assignment Table" << std::endl;
+    std::cout << "Assignment Table" << std::endl;
     ws.printAssignmentTable();
 
     std::cout << std::endl;
-    ws.assignAllRobots();
+
+    // ws.assignAllRobots();
+
+    Robot *robot1 = ws.getAssignedRobot("Goal113");
+    std::cout << std::endl;
+    robot1->print();
+    std::cout << std::endl;
+    robot1->moveTo(-2000, -500);
+    robot1->print();
+    ws.updateAssignmentTable();
+    ws.printAssignmentTable();
+
+    ws.setRobotWorking(robot1);
 
     // ws.cleanUp();
 

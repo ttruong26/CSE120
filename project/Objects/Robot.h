@@ -3,7 +3,6 @@
 #include "Goal.h"
 #include "MapObject.h"
 #include <unordered_map>
-#include "../graph/Tile.h"
 #include "../graph/TileGraph.h"
 
 #include <queue>
@@ -73,4 +72,5 @@ private:
 
     double weightedAverageTime(std::shared_ptr<Goal> goal);
     double reconstructPath(Tile *end);
+    double euclideanDistance(Point a, Point b);
 };

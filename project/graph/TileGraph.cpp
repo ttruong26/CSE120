@@ -1,7 +1,6 @@
 #include "TileGraph.h"
 #include <algorithm>
 
-#include <algorithm>
 #include <vector>
 
 TileGraph::TileGraph()

@@ -829,7 +829,8 @@ CMakeFiles/test.dir/test.cpp.o: \
   /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/graph/../Objects/MapObject.h \
   /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/include/Utility.h \
   /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/Objects/Workspace.h \
-  /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/Objects/../graph/TileGraph.h \
+  /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/Objects/../static/MapLoader.h \
+  /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/static/../graph/TileGraph.h \
   /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/graph/Tile.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/array \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/vector \
@@ -858,8 +859,6 @@ CMakeFiles/test.dir/test.cpp.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__memory/temp_value.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__split_buffer \
   /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/graph/../Objects/Line.h \
-  /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/Objects/../static/MapLoader.h \
-  /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/static/../graph/TileGraph.h \
   /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/static/../Objects/Goal.h \
   /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/static/../Objects/Line.h \
   /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/static/../Objects/Data.h \
@@ -892,6 +891,7 @@ CMakeFiles/test.dir/test.cpp.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/ranges_iterator_traits.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__node_handle \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/optional \
+  /Users/tylertruong/VSCodeFolders/CSE120/git/CSE120/project/Objects/../graph/TileGraph.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/queue \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/deque \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/functional \

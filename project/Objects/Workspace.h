@@ -1,6 +1,5 @@
 #pragma once
 
-#include "../graph/TileGraph.h"
 #include "../static/MapLoader.h"
 #include "Robot.h"
 
@@ -20,18 +19,19 @@ public:
     void loadData();
     void cleanUp();
 
+    void addRobot(Robot *robot);
     std::vector<Robot *> createRobots(int num = 5);
     Robot *getAssignedRobot(std::string goalId);
     std::vector<std::shared_ptr<Goal>> getGoals() { return _goals; }
 
     void assignAllRobots();
     void assignRobotToGoal(std::string goalId);
+    void setRobotWorking(Robot *robot);
 
     void printGoals();
     void printAssignmentTable();
 
     void createAssignmentTable();
-    void sortAssignmentTable();
     void updateAssignmentTable();
 
     Robot *getRobot(int id);
@@ -50,4 +50,7 @@ private:
     // Helper function to place loaded objects onto tileMap
     void placeLoadedGoals();
     void placeLoadedObstacles();
+    void sortAssignmentTable();
+
+    Robot *bestFitRobot(std::string goalId);
 };

@@ -16,12 +16,11 @@ void Workspace::loadData()
 
     this->placeLoadedGoals();
     this->placeLoadedObstacles();
-    this->createRobots(5);
 
     // Once robots are and goals are loaded and placed on graph, we can create the assignment map
-    this->createAssignmentTable();
 }
 
+// Test function to create robots
 std::vector<Robot *> Workspace::createRobots(int num)
 {
     int x = _origin._x;
@@ -34,6 +33,9 @@ std::vector<Robot *> Workspace::createRobots(int num)
         x += 50;
         y += 50;
     }
+
+    this->createAssignmentTable();
+    this->sortAssignmentTable();
 
     return _robots;
 }
@@ -109,6 +111,7 @@ Robot *Workspace::getAssignedRobot(std::string goalId)
 
     for (auto &pair : _assignment)
     {
+        // Search for the goal in the assignment table
         if (pair.first == goalId)
         {
             for (auto robotPredictionList : pair.second)
@@ -133,6 +136,33 @@ void Workspace::assignRobotToGoal(std::string goalId)
         std::cout << "Robot " << robot->getId() << " is assigned to " << goalId << std::endl;
         robot->assignTask(goal);
     }
+    else
+    {
+        std::cout << "No robot available for goal " << goalId << std::endl;
+    }
+}
+
+void Workspace::setRobotWorking(Robot *robot)
+{
+    std::string bestGoal;
+    double bestTime = 1000000;
+    for (const auto &pair : _assignment)
+    {
+        std::string goal = pair.first;
+        auto &robotPredictionList = pair.second;
+        // Check if the given robot is the assigned robot for the goal
+        if (robot->getId() == getAssignedRobot(goal)->getId())
+        {
+            for (auto robotPredictionList : pair.second)
+                if (robotPredictionList._robot->getId() == robot->getId() && robotPredictionList._time < bestTime)
+                {
+                    bestTime = robotPredictionList._time;
+                    bestGoal = goal;
+                }
+        }
+    }
+    std::cout << "Robot " << robot->getId() << " is assigned to " << bestGoal << std::endl;
+    robot->assignTask(_goalsMap[bestGoal]);
 }
 
 void Workspace::assignAllRobots()
@@ -164,7 +194,6 @@ void Workspace::placeLoadedObstacles()
 void Workspace::placeLoadedGoals()
 {
     for (int i = 0; i < _goals.size(); i++)
-
     {
         mGraph->placeObject(_goals[i].get());
     }
@@ -183,7 +212,6 @@ void Workspace::sortAssignmentTable()
     {
         std::string goal = pair.first;
         auto &robotPredictionList = pair.second;
-        std::cout << std::endl;
 
         // Calculate distance of each robot from the goal
         // Calculate distance of each robot from the goal
@@ -209,7 +237,8 @@ void Workspace::sortAssignmentTable()
         // robot[0]->assign(goal);
     }
 
-    std::cout << "Robots assigned to goals." << std::endl;
+    std::cout << std::endl
+              << "Robots assigned to goals." << std::endl;
 }
 
 Robot *Workspace::getRobot(int id)
