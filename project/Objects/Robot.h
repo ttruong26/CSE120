@@ -70,6 +70,7 @@ private:
 
     std::unordered_map<std::string, std::vector<RunTimeInfo>> _previousRuns;
 
+    double getAverageAtSamePosition(std::shared_ptr<Goal> goal);
     double weightedAverageTime(std::shared_ptr<Goal> goal);
     double reconstructPath(Tile *end);
     double euclideanDistance(Point a, Point b);

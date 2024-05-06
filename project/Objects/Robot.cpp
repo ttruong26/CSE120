@@ -101,13 +101,12 @@ double Robot::predictTimeEstimation(std::shared_ptr<Goal> goal)
             std::cout << "Initial Estimate to reach goal:";
             std::cout << ": " << initialEstimate << "sec\n";
 
-            /*
-            double adjustedEstimate = weightedAverageTime(goal);
+            double adjustedEstimate = getAverageAtSamePosition(goal);
             if (adjustedEstimate != -1)
             {
                 return adjustedEstimate; // Or some combination of initialEstimate and adjustedEstimate
             }
-            */
+
             return initialEstimate; // Return time to reach goal
         }
 
@@ -157,6 +156,26 @@ double Robot::predictTimeEstimation(std::shared_ptr<Goal> goal)
     }
 
     return -1; // If no path is found
+}
+
+double Robot::getAverageAtSamePosition(std::shared_ptr<Goal> goal)
+{
+    auto it = _previousRuns.find(goal->getGoalId());
+    if (it != _previousRuns.end())
+    {
+        double sum = 0.0;
+        double count = 0.0;
+        for (const auto &info : it->second)
+        {
+            if (info._robotStartPos._x == _currentTile->getPosition()._x && info._robotStartPos._y == _currentTile->getPosition()._y)
+            {
+                sum += info._timeTaken;
+                count++;
+            }
+        }
+        return sum / count; // Return the average time
+    }
+    return -1; // No historical data found
 }
 
 double Robot::weightedAverageTime(std::shared_ptr<Goal> goal)

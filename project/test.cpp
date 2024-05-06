@@ -42,14 +42,13 @@ int main()
                    // Also creates Robots and assigns them to Goals.
 
     std::vector<Robot *> robots = ws.createRobots(5);
+
     ws.printGoals(); // List loaded goals
     std::cout << std::endl;
+
     std::cout << "Assignment Table" << std::endl;
     ws.printAssignmentTable();
-
     std::cout << std::endl;
-
-    // ws.assignAllRobots();
 
     Robot *robot1 = ws.getAssignedRobot("Goal113");
     std::cout << std::endl;
@@ -57,8 +56,12 @@ int main()
     std::cout << std::endl;
     robot1->moveTo(-2000, -500);
     robot1->print();
+    std::cout << std::endl;
+
     ws.updateAssignmentTable();
     ws.printAssignmentTable();
+
+    // ws.assignAllRobots();
 
     ws.setRobotWorking(robot1);
 

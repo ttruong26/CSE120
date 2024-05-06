@@ -22,6 +22,11 @@ struct Point
         this->_x = x;
         this->_y = y;
     }
+
+    bool operator==(const Point &p)
+    {
+        return (this->_x == p._x && this->_y == p._y);
+    }
 };
 
 struct Rect
